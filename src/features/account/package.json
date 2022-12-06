@@ -1,0 +1,4 @@
+{
+  "name": "@features/account",
+  "main": "./index.js"
+}
