@@ -1,9 +1,10 @@
 import React from 'react'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, Slide } from 'react-toastify'
 
 export default function Toast() {
   return (
     <ToastContainer
+      transition={Slide}
       position="top-right"
       autoClose={5000}
       hideProgressBar={false}

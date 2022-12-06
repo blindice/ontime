@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 const initialState = {
   name: '',
   isLoading: false,
+  token: localStorage.getItem('token'),
 }
 
 export const loginAsync = createAsyncThunk(

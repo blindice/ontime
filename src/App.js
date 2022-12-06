@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './app/routes'
 
