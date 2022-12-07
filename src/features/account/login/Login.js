@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { TextField } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { useForm, Controller } from 'react-hook-form'
@@ -11,6 +12,7 @@ import { login as style } from './style'
 import Toast from '../../../components/Toast'
 
 export default function Login() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const isLoading = useSelector((state) => state.account.isLoading)
   const {
@@ -26,10 +28,10 @@ export default function Login() {
 
   const handleLogin = async (data) => {
     try {
-      const res = await dispatch(loginAsync(data)).unwrap()
-      console.log(res)
+      await dispatch(loginAsync(data)).unwrap()
+      navigate('/main')
     } catch (err) {
-      toast('Failed to Log-in!', { type: 'error' })
+      toast(err, { type: 'error' })
     }
   }
 

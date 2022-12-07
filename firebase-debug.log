@@ -1,0 +1,70 @@
+[debug] [2022-12-07T00:49:19.144Z] ----------------------------------------------------------------------
+[debug] [2022-12-07T00:49:19.145Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login --debug
+[debug] [2022-12-07T00:49:19.146Z] CLI Version:   11.17.0
+[debug] [2022-12-07T00:49:19.146Z] Platform:      win32
+[debug] [2022-12-07T00:49:19.146Z] Node Version:  v16.17.0
+[debug] [2022-12-07T00:49:19.147Z] Time:          Wed Dec 07 2022 08:49:19 GMT+0800 (Taipei Standard Time)
+[debug] [2022-12-07T00:49:19.148Z] ----------------------------------------------------------------------
+[debug] 
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[info] i  To change your data collection preference at any time, run `firebase logout` and log in again. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=853721380&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2022-12-07T00:50:38.466Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2022-12-07T00:50:38.467Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2022-12-07T00:50:38.948Z] Token Fetch Error: FirebaseError: Failed to make request to https://accounts.google.com/o/oauth2/token
+    at RetryOperation._fn (C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:242:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[debug] [2022-12-07T00:50:38.954Z] >>> [apiv2][query] POST https://auth.firebase.tools/attest [none]
+[debug] [2022-12-07T00:50:38.954Z] >>> [apiv2][body] POST https://auth.firebase.tools/attest {"session_id":"d66e08ad-0b3c-4ea0-a3dc-ce4e3269977a"}
+[debug] [2022-12-07T00:50:39.469Z] FetchError: request to https://auth.firebase.tools/attest failed, reason: unable to get local issuer certificate
+    at ClientRequest.<anonymous> (C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\node-fetch\lib\index.js:1491:11)
+    at ClientRequest.emit (node:events:513:28)
+    at ClientRequest.emit (node:domain:489:12)
+    at TLSSocket.socketErrorListener (node:_http_client:481:9)
+    at TLSSocket.emit (node:events:513:28)
+    at TLSSocket.emit (node:domain:489:12)
+    at emitErrorNT (node:internal/streams/destroy:157:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+[error] 
+[error] Error: Failed to make request to https://auth.firebase.tools/attest
+[debug] [2022-12-07T00:53:53.683Z] ----------------------------------------------------------------------
+[debug] [2022-12-07T00:53:53.684Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login --debug
+[debug] [2022-12-07T00:53:53.685Z] CLI Version:   11.17.0
+[debug] [2022-12-07T00:53:53.685Z] Platform:      win32
+[debug] [2022-12-07T00:53:53.685Z] Node Version:  v16.17.0
+[debug] [2022-12-07T00:53:53.686Z] Time:          Wed Dec 07 2022 08:53:53 GMT+0800 (Taipei Standard Time)
+[debug] [2022-12-07T00:53:53.686Z] ----------------------------------------------------------------------
+[debug] 
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[info] i  To change your data collection preference at any time, run `firebase logout` and log in again. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=634033144&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2022-12-07T00:54:01.069Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2022-12-07T00:54:01.070Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2022-12-07T00:54:01.558Z] Token Fetch Error: FirebaseError: Failed to make request to https://accounts.google.com/o/oauth2/token
+    at RetryOperation._fn (C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:242:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[debug] [2022-12-07T00:54:01.562Z] >>> [apiv2][query] POST https://auth.firebase.tools/attest [none]
+[debug] [2022-12-07T00:54:01.563Z] >>> [apiv2][body] POST https://auth.firebase.tools/attest {"session_id":"7ed10c82-58d2-4e44-92e2-a891d58c556d"}
+[debug] [2022-12-07T00:54:02.084Z] FetchError: request to https://auth.firebase.tools/attest failed, reason: unable to get local issuer certificate
+    at ClientRequest.<anonymous> (C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\node-fetch\lib\index.js:1491:11)
+    at ClientRequest.emit (node:events:513:28)
+    at ClientRequest.emit (node:domain:489:12)
+    at TLSSocket.socketErrorListener (node:_http_client:481:9)
+    at TLSSocket.emit (node:events:513:28)
+    at TLSSocket.emit (node:domain:489:12)
+    at emitErrorNT (node:internal/streams/destroy:157:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+[error] 
+[error] Error: Failed to make request to https://auth.firebase.tools/attest
