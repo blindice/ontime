@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useRoutes } from 'react-router-dom'
+import DashBoard from '../pages/DashBoard'
 import LoginPage from '../pages/LoginPage'
 import MainPage from '../pages/MainPage'
 
@@ -10,8 +11,13 @@ export default function Routes() {
       element: <LoginPage />,
     },
     {
-      path: '/main',
       element: <MainPage />,
+      children: [
+        {
+          path: '/dashboard',
+          element: <DashBoard />,
+        },
+      ],
     },
   ])
 

@@ -7,7 +7,7 @@ export default function LoginPage() {
   const token = useSelector((state) => state.account.token)
   return (
     <div className="container">
-      {!token ? <Login /> : <Navigate replace to="/main" />}
+      {!token ? <Login /> : <Navigate replace to="/dashboard" />}
     </div>
   )
 }

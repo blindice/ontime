@@ -4,6 +4,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
+import { NavLink } from 'react-router-dom'
 
 import Logout from '../features/account/logout/Logout'
 import { Box } from '@mui/system'
@@ -28,12 +29,12 @@ export default function Header() {
               textDecoration: 'none',
             }}
           >
-            On-Time
+            UpBox
           </Typography>
           <Box style={{ display: 'flex' }} sx={{ flexGrow: 1 }}>
             <MenuItem>
               <Typography variant="subtitle2" textAlign="center">
-                Home
+                <NavLink to="dashboard">Home</NavLink>
               </Typography>
             </MenuItem>
             <MenuItem>

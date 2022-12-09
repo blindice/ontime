@@ -29,7 +29,7 @@ export default function Login() {
   const handleLogin = async (data) => {
     try {
       await dispatch(loginAsync(data)).unwrap()
-      navigate('/main')
+      navigate('/dashboard')
     } catch (err) {
       toast(err, { type: 'error' })
     }
@@ -38,7 +38,7 @@ export default function Login() {
   return (
     <div>
       <form onSubmit={handleSubmit(handleLogin)} css={style.form}>
-        <h1 css={style.label}>On-Time</h1>
+        <h1 css={style.label}>UpBox</h1>
         <Controller
           name="username"
           control={control}
