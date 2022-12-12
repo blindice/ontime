@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import { storage } from "../app/db";
-import { ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
+import React, { useState } from 'react'
+import { storage } from '../app/db'
+import { ref, listAll, getDownloadURL, getMetadata } from 'firebase/storage'
 
 export default function Files() {
-  const [type, setType] = useState(0);
-  const [files, setFiles] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [type, setType] = useState(0)
+  const [files, setFiles] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const downloadFile = async (url) => {
-    console.log(url);
-    window.open(url, "_blank");
-  };
+    console.log(url)
+    window.open(url, '_blank')
+  }
 
   const getAll = async () => {
-    setLoading(true);
-    const listRef = ref(storage);
-    const resList = await listAll(listRef);
-    let items = [];
+    setLoading(true)
+    const listRef = ref(storage)
+    const resList = await listAll(listRef)
+    let items = []
 
     await Promise.all(
       resList.items.map(async (item) => {
-        console.log(item);
-        const { name } = item;
-        const url = await getDownloadURL(item);
-        const meta = await getMetadata(item);
+        console.log(item)
+        const { name } = item
+        const url = await getDownloadURL(item)
+        const meta = await getMetadata(item)
         items.push({
           id: meta.generation,
           name: name,
@@ -31,49 +31,49 @@ export default function Files() {
           size: meta.size,
           type: meta.contentType,
           lastUpdated: meta.updated,
-        });
-      })
-    );
-    setLoading(false);
-    return items;
-  };
+        })
+      }),
+    )
+    setLoading(false)
+    return items
+  }
   const getAllImage = async () => {
-    setLoading(true);
-    const files = await getAll();
-    const filtered = files.filter((file) => file["type"].includes("image"));
-    setFiles(filtered);
-    setType(1);
-    setLoading(false);
-  };
+    setLoading(true)
+    const files = await getAll()
+    const filtered = files.filter((file) => file['type'].includes('image'))
+    setFiles(filtered)
+    setType(1)
+    setLoading(false)
+  }
 
   const getAllVideos = async () => {
-    setLoading(true);
-    const files = await getAll();
-    const filtered = files.filter((file) => file["type"].includes("video"));
-    setFiles(filtered);
-    setType(2);
-    setLoading(false);
-  };
+    setLoading(true)
+    const files = await getAll()
+    const filtered = files.filter((file) => file['type'].includes('video'))
+    setFiles(filtered)
+    setType(2)
+    setLoading(false)
+  }
 
   const getAllAudio = async () => {
-    setLoading(true);
-    const files = await getAll();
-    const filtered = files.filter((file) => file["type"].includes("audio"));
-    setFiles(filtered);
-    setType(3);
-    setLoading(false);
-  };
+    setLoading(true)
+    const files = await getAll()
+    const filtered = files.filter((file) => file['type'].includes('audio'))
+    setFiles(filtered)
+    setType(3)
+    setLoading(false)
+  }
 
   const getAllDocuments = async () => {
-    setLoading(true);
-    const files = await getAll();
+    setLoading(true)
+    const files = await getAll()
     const filtered = files.filter((file) =>
-      file["type"].includes("application")
-    );
-    setFiles(filtered);
-    setType(4);
-    setLoading(false);
-  };
+      file['type'].includes('application'),
+    )
+    setFiles(filtered)
+    setType(4)
+    setLoading(false)
+  }
   return (
     <>
       <button onClick={getAllAudio}>Audio</button>
@@ -84,7 +84,7 @@ export default function Files() {
         {type === 1 ? (
           files.map((file) => (
             <>
-              <img src={file.url}></img>
+              <img alt="defaultImage" src={file.url}></img>
               <div>{file.name}</div>
               <button onClick={() => downloadFile(file.url)}>Donwload</button>
             </>
@@ -111,22 +111,23 @@ export default function Files() {
           files.map((file) => (
             <>
               <img
+                alt="filetype"
                 src={
-                  file.name.includes(".pdf")
-                    ? "/images/pdf.png"
-                    : file.name.includes(".doc") || file.name.includes(".docx")
-                    ? "/images/doc.png"
-                    : file.name.includes(".htm") || file.name.includes(".html")
-                    ? "/images/html.png"
-                    : file.name.includes(".xls") || file.name.includes(".xlsx")
-                    ? "/images/xls.png"
-                    : file.name.includes(".ppt") || file.name.includes(".pptx")
-                    ? "/images/ppt.png"
-                    : file.name.includes(".txt")
-                    ? "/images/txt.png"
-                    : file.name.includes(".csv")
-                    ? "/images/csv.png"
-                    : ""
+                  file.name.includes('.pdf')
+                    ? '/images/pdf.png'
+                    : file.name.includes('.doc') || file.name.includes('.docx')
+                    ? '/images/doc.png'
+                    : file.name.includes('.htm') || file.name.includes('.html')
+                    ? '/images/html.png'
+                    : file.name.includes('.xls') || file.name.includes('.xlsx')
+                    ? '/images/xls.png'
+                    : file.name.includes('.ppt') || file.name.includes('.pptx')
+                    ? '/images/ppt.png'
+                    : file.name.includes('.txt')
+                    ? '/images/txt.png'
+                    : file.name.includes('.csv')
+                    ? '/images/csv.png'
+                    : ''
                 }
               ></img>
               <div>{file.name}</div>
@@ -140,5 +141,5 @@ export default function Files() {
         )}
       </div>
     </>
-  );
+  )
 }
