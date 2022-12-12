@@ -1,13 +1,13 @@
-import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import { NavLink } from "react-router-dom";
+import React from 'react'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import MenuItem from '@mui/material/MenuItem'
+import Menu from '@mui/material/Menu'
+import { NavLink } from 'react-router-dom'
 
-import Logout from "../features/account/logout/Logout";
-import { Box } from "@mui/system";
+import Logout from '../features/account/logout/Logout'
+import { Box } from '@mui/system'
 
 export default function Header() {
   return (
@@ -21,17 +21,17 @@ export default function Header() {
             href="/main"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
             UpBox
           </Typography>
-          <Box style={{ display: "flex" }} sx={{ flexGrow: 1 }}>
+          <Box style={{ display: 'flex' }} sx={{ flexGrow: 1 }}>
             <MenuItem>
               <Typography variant="subtitle2" textAlign="center">
                 <NavLink to="dashboard">DashBoard</NavLink>
@@ -44,7 +44,7 @@ export default function Header() {
             </MenuItem>
             <MenuItem>
               <Typography variant="subtitle2" textAlign="center">
-                Etc
+                <NavLink to="upload">Upload</NavLink>
               </Typography>
             </MenuItem>
           </Box>
@@ -54,5 +54,5 @@ export default function Header() {
         </Toolbar>
       </AppBar>
     </>
-  );
+  )
 }
