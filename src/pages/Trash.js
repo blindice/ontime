@@ -8,19 +8,26 @@ import {
   where,
   getDocs,
   updateDoc,
+  deleteDoc,
 } from 'firebase/firestore'
 
-import { ref, listAll, getDownloadURL, getMetadata } from 'firebase/storage'
+import {
+  ref,
+  listAll,
+  getDownloadURL,
+  getMetadata,
+  deleteObject,
+} from 'firebase/storage'
 import { DataGrid } from '@mui/x-data-grid'
 
-export default function DashBoard() {
+export default function Trash() {
   const [type, setType] = useState(0)
   const [files, setFiles] = useState([])
   const [loading, setLoading] = useState(false)
 
   const getAll = async () => {
     setLoading(true)
-    const list = query(collection(db, 'files'), where('isDeleted', '==', false))
+    const list = query(collection(db, 'files'), where('isDeleted', '==', true))
     const querySnapshot = await getDocs(list)
     let datas = []
     querySnapshot.forEach((item) =>
@@ -112,18 +119,27 @@ export default function DashBoard() {
     { field: 'lastUpdated', headerName: 'last Updated', width: 150 },
     { field: 'size', headerName: 'Size', width: 150 },
     {
-      field: 'action',
-      headerName: 'Action',
+      field: 'restore',
+      headerName: '',
       width: 150,
       renderCell: ({ row }) => (
-        <button onClick={() => handleRemove(row.id)}>Remove</button>
+        <button onClick={() => handleRestore(row.id)}>Restore</button>
+      ),
+    },
+    {
+      field: 'delete',
+      headerName: '',
+      width: 150,
+      renderCell: ({ row }) => (
+        <button onClick={() => handleDelete(row.id, row.name)}>Delete</button>
       ),
     },
   ]
-  const handleRemove = (id) => {
+  const handleRestore = (id) => {
     const ref = doc(db, 'files', id)
-    updateDoc(ref, { isDeleted: true })
+    updateDoc(ref, { isDeleted: false })
       .then(() => {
+        console.log('Restore Successful!')
         if (type === 1) {
           getAllImage()
         } else if (type === 2) {
@@ -137,6 +153,28 @@ export default function DashBoard() {
         }
       })
       .catch((err) => console.log(err))
+  }
+
+  const handleDelete = async (id, name) => {
+    const dataRef = doc(db, 'files', id)
+    const itemRef = ref(storage, name)
+
+    await deleteDoc(dataRef, { isDeleted: false })
+    await deleteObject(itemRef)
+
+    if (type === 1) {
+      getAllImage()
+    } else if (type === 2) {
+      getAllVideos()
+    } else if (type === 3) {
+      getAllAudio()
+    } else if (type === 4) {
+      getAllDocuments()
+    } else {
+      getAllFiles()
+    }
+
+    console.log('Delete Successful!')
   }
 
   if (files)

@@ -54,7 +54,7 @@ export default function Header() {
             </MenuItem>
             <MenuItem>
               <Typography variant="subtitle2" textAlign="center">
-                Trash
+                <NavLink to="trash">Trash</NavLink>
               </Typography>
             </MenuItem>
           </Box>

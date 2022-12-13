@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { useRoutes } from 'react-router-dom'
+
 import DashBoard from '../pages/DashBoard'
 import Files from '../pages/Files'
 import LoginPage from '../pages/LoginPage'
 import MainPage from '../pages/MainPage'
 import Upload from '../pages/Upload'
+import Trash from '../pages/Trash'
 
 export default function Routes() {
   let element = useRoutes([
@@ -26,6 +28,10 @@ export default function Routes() {
         {
           path: '/upload',
           element: <Upload />,
+        },
+        {
+          path: '/trash',
+          element: <Trash />,
         },
       ],
     },
