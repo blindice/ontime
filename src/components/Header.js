@@ -13,8 +13,6 @@ import 'react-awesome-button/dist/styles.css'
 import Logout from '../features/account/logout/Logout'
 
 export default function Header() {
-  const inputRef = useRef(null)
-  const handleUpload = async () => {}
   return (
     <>
       <AppBar position="static">
@@ -23,7 +21,7 @@ export default function Header() {
             variant="h6"
             noWrap
             component="a"
-            href="/main"
+            href="/dashboard"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },

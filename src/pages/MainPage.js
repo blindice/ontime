@@ -8,7 +8,7 @@ function MainPage() {
   const { token } = useSelector((state) => state.account)
 
   return (
-    <div className="container" style={{ height: '87vh', width: '100vw' }}>
+    <div className="container" style={{ height: '87vh', width: '78vw' }}>
       {token ? <Outlet /> : <Navigate replace to="/" />}
     </div>
   )

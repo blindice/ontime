@@ -1,0 +1,20 @@
+.container {
+  display: grid;
+  grid-template-areas:
+    'side header header header header header header'
+    'side main main main main main main'
+    'side main main main main main main';
+  gap: 10px;
+}
+
+.sides {
+  grid-area: side;
+}
+
+.heads {
+  grid-area: header;
+}
+
+.contents {
+  grid-area: main;
+}
