@@ -19,6 +19,11 @@ import {
   deleteObject,
 } from 'firebase/storage'
 import { DataGrid } from '@mui/x-data-grid'
+import { Button } from '@mui/material'
+import IconButton from '@mui/material/IconButton'
+import RestoreIcon from '@mui/icons-material/Restore'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import ButtonGroup from '@mui/material/ButtonGroup'
 
 export default function Trash() {
   const [type, setType] = useState(0)
@@ -114,24 +119,67 @@ export default function Trash() {
   }, [])
 
   const columns = [
-    { field: 'id', headerName: 'Id', width: 150 },
-    { field: 'name', headerName: 'File Name', width: 150 },
-    { field: 'lastUpdated', headerName: 'last Updated', width: 150 },
-    { field: 'size', headerName: 'Size', width: 150 },
+    { field: 'id', headerName: 'Id', width: 200 },
+    { field: 'name', headerName: 'File Name', width: 275 },
+    {
+      field: 'lastUpdated',
+      headerName: 'Last Updated',
+      width: 150,
+      valueGetter: (params) => {
+        let newDate = new Date(params.row.lastUpdated)
+        return (
+          newDate.getMonth() +
+          1 +
+          '/' +
+          newDate.getDay() +
+          '/' +
+          newDate.getFullYear() +
+          ' ' +
+          newDate.getHours() +
+          ':' +
+          newDate.getMinutes()
+        )
+      },
+    },
+    {
+      field: 'size',
+      headerName: 'Size',
+      width: 125,
+      valueGetter: (params) => {
+        const size = params.row.size
+        if (!+size) return '0 Bytes'
+
+        const k = 1024
+        const dm = 2 < 0 ? 0 : 2
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+
+        const i = Math.floor(Math.log(size) / Math.log(k))
+
+        return `${parseFloat((size / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+      },
+    },
     {
       field: 'restore',
-      headerName: '',
-      width: 150,
+      headerName: 'Restore',
+      width: 100,
+      headerAlign: 'center',
+      align: 'center',
       renderCell: ({ row }) => (
-        <button onClick={() => handleRestore(row.id)}>Restore</button>
+        <IconButton onClick={() => handleRestore(row.id)} size="small">
+          <RestoreIcon color="primary" />
+        </IconButton>
       ),
     },
     {
       field: 'delete',
-      headerName: '',
-      width: 150,
+      headerName: 'Delete',
+      width: 100,
+      headerAlign: 'center',
+      align: 'center',
       renderCell: ({ row }) => (
-        <button onClick={() => handleDelete(row.id, row.name)}>Delete</button>
+        <IconButton onClick={() => handleDelete(row.id, row.name)} size="small">
+          <DeleteForeverIcon sx={{ color: '#c92216' }} />
+        </IconButton>
       ),
     },
   ]
@@ -179,14 +227,52 @@ export default function Trash() {
 
   if (files)
     return (
-      <div style={{ height: '60vh', width: '50%' }}>
-        <button onClick={getAllFiles}>All</button>
-        <button onClick={getAllAudio}>Audios</button>
-        <button onClick={getAllDocuments}>Documents</button>
-        <button onClick={getAllImage}>Images</button>
-        <button onClick={getAllVideos}>Videos</button>
-        <DataGrid rows={files} columns={columns} loading={loading} />
-      </div>
+      <>
+        <div style={{ position: 'absolute' }}>
+          <p
+            style={{
+              fontFamily: 'Roboto',
+              fontSize: '20px',
+              fontWeight: 700,
+              color: '#1565c0',
+            }}
+          >
+            Trash
+          </p>
+        </div>
+        <div
+          style={{
+            height: '60vh',
+            width: '70vw',
+          }}
+        >
+          <div style={{ transform: 'translate(5em, 5em)' }}>
+            <ButtonGroup
+              variant="contained"
+              aria-label="outlined primary button group"
+              size="small"
+            >
+              <Button onClick={getAllFiles}>All</Button>
+              <Button onClick={getAllAudio}>Audios</Button>
+              <Button onClick={getAllDocuments}>Documents</Button>
+              <Button onClick={getAllImage}>Images</Button>
+              <Button onClick={getAllVideos}>Videos</Button>
+            </ButtonGroup>
+          </div>
+          <DataGrid
+            pageSize={5}
+            rows={files}
+            columns={columns}
+            loading={loading}
+            size="small"
+            style={{
+              boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+              fontFamily: 'Work Sans',
+              transform: 'translate(5em, 7em)',
+            }}
+          />
+        </div>
+      </>
     )
 
   return <Skeleton variant="rectangular" width={210} height={118} />

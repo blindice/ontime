@@ -23,23 +23,22 @@ export default function Logout() {
     setAnchorEl(null)
   }
 
-  const origin = {
-    vertical: 'top',
-    horizontal: 'right',
-  }
-
   const handleLogout = async () => await dispatch(logoutAsync()).unwrap()
   return (
-    <>
-      <Typography variant="caption" component="span" sx={{ flexGrow: 1 }}>
+    <div style={{ float: 'right' }}>
+      <Typography
+        variant="caption"
+        component="span"
+        sx={{ fontFamily: 'Nunito', fontWeight: 'bold' }}
+      >
         {email}
       </Typography>
       <IconButton
-        size="large"
+        sx={{ fontSize: 50 }}
         aria-label="account of current user"
         aria-controls="menu-appbar"
         aria-haspopup="true"
-        color="inherit"
+        color="primary"
         onClick={handleMenu}
       >
         <AccountCircle />
@@ -47,14 +46,20 @@ export default function Logout() {
       <Menu
         id="menu-appbar"
         anchorEl={anchorEl}
-        anchorOrigin={origin}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
         keepMounted
-        transformOrigin={origin}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
         <MenuItem onClick={handleLogout}>Sign-out</MenuItem>
       </Menu>
-    </>
+    </div>
   )
 }

@@ -82,33 +82,61 @@ export default function Upload() {
     multiple: false,
   })
   return (
-    <section className="container">
-      <div
-        {...getRootProps({ className: 'dropzone' })}
-        style={{
-          background: '#dadada',
-          width: 250,
-          height: 250,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 50,
-          textAlign: 'center',
-        }}
-      >
-        <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Drop the files here ...</p>
-        ) : (
-          <p>Drag 'n' drop some files here, or click to select files</p>
-        )}
+    <>
+      <div style={{ position: 'absolute' }}>
+        <p
+          style={{
+            fontFamily: 'Roboto',
+            fontSize: '20px',
+            fontWeight: 700,
+            color: '#1565c0',
+          }}
+        >
+          Upload
+        </p>
       </div>
-      {isUploading && (
-        <Box sx={{ width: '100%' }}>
-          <LinearProgress value={progress} variant="determinate" />
-        </Box>
-      )}
-      <Toast />
-    </section>
+      <section className="container">
+        <div
+          {...getRootProps({ className: 'dropzone' })}
+          style={{
+            border: '2px #1565c0 dashed',
+            borderRadius: '15px',
+            background: '#dadada',
+            width: '50vw',
+            height: '50vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 50,
+            textAlign: 'center',
+            transform: 'translate(9em, 5em)',
+            cursor: 'pointer',
+          }}
+        >
+          <input {...getInputProps()} />
+          {isDragActive ? (
+            <p>Drop the files here ...</p>
+          ) : (
+            <p>Drag 'n' drop some files here, or click to select files</p>
+          )}
+        </div>
+        {isUploading && (
+          <Box sx={{ width: '100%', border: '1px black solid' }}>
+            <LinearProgress value={progress} variant="determinate" />
+          </Box>
+        )}
+
+        {/* <LinearProgress
+          value={progress}
+          variant="determinate"
+          sx={{
+            width: '30vw',
+            positio
+          }}
+        /> */}
+
+        <Toast />
+      </section>
+    </>
   )
 }

@@ -13,7 +13,7 @@ export default function SideBar() {
           [`.${sidebarClasses.container}`]: {
             height: '100vh',
             backgroundColor: 'white',
-            boxShadow: '0 0 6px hsl(210 14% 90%)',
+            boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
           },
         }}
       >
@@ -35,15 +35,17 @@ export default function SideBar() {
         </div>
         <Menu
           menuItemStyles={{
-            button: ({ level, active, disabled, hover }) => {
+            button: ({ level, active, disabled }) => {
               if (level === 0)
                 return {
-                  color: disabled ? 'black' : 'black',
+                  color: disabled ? 'black' : '#1565c0',
                   backgroundColor: active ? 'black' : undefined,
                   fontFamily: 'Work Sans',
+                  fontWeight: 700,
                   fontSize: '14px',
                   ':hover': {
-                    backgroundColor: 'grey',
+                    backgroundColor: '#1565c0',
+                    color: 'white',
                   },
                 }
             },

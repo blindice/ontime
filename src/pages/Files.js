@@ -86,6 +86,7 @@ export default function Files() {
   }
   return (
     <>
+      <p>Files</p>
       <button onClick={getAllAudio}>Audio</button>
       <button onClick={getAllDocuments}>Document</button>
       <button onClick={getAllImage}>Image</button>

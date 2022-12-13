@@ -1,5 +1,6 @@
 import React from 'react'
+import Logout from '../features/account/logout/Logout'
 
 export default function CustomHeader() {
-  return <h3>Header</h3>
+  return <Logout />
 }
