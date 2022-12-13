@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { storage } from '../app/db'
+import { storage, db } from '../app/db'
 import { ref, listAll, getDownloadURL, getMetadata } from 'firebase/storage'
+import { collection, query, where, getDocs } from 'firebase/firestore'
 
 export default function Files() {
   const [type, setType] = useState(0)
@@ -14,6 +15,13 @@ export default function Files() {
 
   const getAll = async () => {
     setLoading(true)
+    const list = query(collection(db, 'files'), where('isDeleted', '==', false))
+    const querySnapshot = await getDocs(list)
+    let datas = []
+    querySnapshot.forEach((item) =>
+      datas.push({ id: item.id, name: item.data().filename }),
+    )
+
     const listRef = ref(storage)
     const resList = await listAll(listRef)
     let items = []
@@ -22,16 +30,18 @@ export default function Files() {
       resList.items.map(async (item) => {
         console.log(item)
         const { name } = item
-        const url = await getDownloadURL(item)
-        const meta = await getMetadata(item)
-        items.push({
-          id: meta.generation,
-          name: name,
-          url: url,
-          size: meta.size,
-          type: meta.contentType,
-          lastUpdated: meta.updated,
-        })
+        if (datas.some((data) => data.name === name)) {
+          const url = await getDownloadURL(item)
+          const meta = await getMetadata(item)
+          items.push({
+            id: meta.generation,
+            name: name,
+            url: url,
+            size: meta.size,
+            type: meta.contentType,
+            lastUpdated: meta.updated,
+          })
+        }
       }),
     )
     setLoading(false)

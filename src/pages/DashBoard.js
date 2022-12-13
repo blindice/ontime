@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { storage, db } from '../app/db'
 import Skeleton from '@mui/material/Skeleton'
 import {
+  doc,
   collection,
   query,
   where,
@@ -9,45 +10,36 @@ import {
   updateDoc,
 } from 'firebase/firestore'
 
-import {
-  ref,
-  listAll,
-  getDownloadURL,
-  getMetadata,
-  deleteObject,
-} from 'firebase/storage'
+import { ref, listAll, getDownloadURL, getMetadata } from 'firebase/storage'
 import { DataGrid } from '@mui/x-data-grid'
 
 export default function DashBoard() {
-  const [records, setRecords] = useState([])
+  const [type, setType] = useState(0)
   const [files, setFiles] = useState([])
   const [loading, setLoading] = useState(false)
 
-  const getRecords = async () => {
-    const list = query(collection(db, 'files'), where('isDeleted', '==', false))
-    const querySnapshot = await getDocs(list)
-
-    let items = []
-    querySnapshot.forEach((item) => items.push(item.data().filename))
-    setRecords(items)
-  }
-
   const getAll = async () => {
     setLoading(true)
+    const list = query(collection(db, 'files'), where('isDeleted', '==', false))
+    const querySnapshot = await getDocs(list)
+    let datas = []
+    querySnapshot.forEach((item) =>
+      datas.push({ id: item.id, name: item.data().filename }),
+    )
+
     const listRef = ref(storage)
     const resList = await listAll(listRef)
     let items = []
 
     await Promise.all(
       resList.items.map(async (item) => {
-        console.log(item)
         const { name } = item
-        if (records.includes(name)) {
+        if (datas.some((data) => data.name === name)) {
+          const { id } = datas.find((data) => data.name === name)
           const url = await getDownloadURL(item)
           const meta = await getMetadata(item)
-          console.log(meta)
           items.push({
-            id: meta.generation,
+            id: id,
             name: name,
             url: url,
             size: meta.size,
@@ -66,6 +58,7 @@ export default function DashBoard() {
     const files = await getAll()
     const filtered = files.filter((file) => file['type'].includes('image'))
     setFiles(filtered)
+    setType(1)
     setLoading(false)
   }
 
@@ -74,6 +67,7 @@ export default function DashBoard() {
     const files = await getAll()
     const filtered = files.filter((file) => file['type'].includes('video'))
     setFiles(filtered)
+    setType(2)
     setLoading(false)
   }
 
@@ -82,6 +76,7 @@ export default function DashBoard() {
     const files = await getAll()
     const filtered = files.filter((file) => file['type'].includes('audio'))
     setFiles(filtered)
+    setType(3)
     setLoading(false)
   }
 
@@ -92,6 +87,7 @@ export default function DashBoard() {
       file['type'].includes('application'),
     )
     setFiles(filtered)
+    setType(4)
     setLoading(false)
   }
 
@@ -99,18 +95,19 @@ export default function DashBoard() {
     setLoading(true)
     const files = await getAll()
     setFiles(files)
+    setType(0)
     setLoading(false)
   }
 
   useEffect(() => {
     ;(async () => {
-      await getRecords()
       const datas = await getAll()
       setFiles(datas)
     })()
   }, [])
 
   const columns = [
+    { field: 'id', headerName: 'Id', width: 150 },
     { field: 'name', headerName: 'File Name', width: 150 },
     { field: 'lastUpdated', headerName: 'last Updated', width: 150 },
     { field: 'size', headerName: 'Size', width: 150 },
@@ -119,20 +116,26 @@ export default function DashBoard() {
       headerName: 'Action',
       width: 150,
       renderCell: ({ row }) => (
-        <button onClick={() => handleDelete(row.name)}>Delete</button>
+        <button onClick={() => handleDelete(row.id)}>Delete</button>
       ),
     },
   ]
-  const handleDelete = (name) => {
-    // updateDoc(ref(storage, name), {isDeleted: true})
-    const itemRef = ref(storage, name)
-
-    deleteObject(itemRef)
+  const handleDelete = (id) => {
+    const ref = doc(db, 'files', id)
+    updateDoc(ref, { isDeleted: true })
       .then(() => {
-        console.log('Deleted Successfully')
-        return getAll()
+        if (type === 1) {
+          getAllImage()
+        } else if (type === 2) {
+          getAllVideos()
+        } else if (type === 3) {
+          getAllAudio()
+        } else if (type === 4) {
+          getAllDocuments()
+        } else {
+          getAllFiles()
+        }
       })
-      .then((files) => setFiles(files))
       .catch((err) => console.log(err))
   }
 
