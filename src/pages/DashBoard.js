@@ -9,14 +9,16 @@ import {
   getDocs,
   updateDoc,
 } from 'firebase/firestore'
+import { toast } from 'react-toastify'
+import { translationFirebaseErrorsEN } from 'react-translation-firebase-errors'
 
 import { ref, listAll, getDownloadURL, getMetadata } from 'firebase/storage'
 import { DataGrid } from '@mui/x-data-grid'
 import { Button } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
-import RestoreIcon from '@mui/icons-material/Restore'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import ButtonGroup from '@mui/material/ButtonGroup'
+import Toast from '../components/Toast'
 
 export default function DashBoard() {
   const [type, setType] = useState(0)
@@ -24,84 +26,117 @@ export default function DashBoard() {
   const [loading, setLoading] = useState(false)
 
   const getAll = async () => {
-    setLoading(true)
-    const list = query(collection(db, 'files'), where('isDeleted', '==', false))
-    const querySnapshot = await getDocs(list)
-    let datas = []
-    querySnapshot.forEach((item) =>
-      datas.push({ id: item.id, name: item.data().filename }),
-    )
+    try {
+      setLoading(true)
+      const list = query(
+        collection(db, 'files'),
+        where('isDeleted', '==', false),
+      )
+      const querySnapshot = await getDocs(list)
+      let datas = []
+      querySnapshot.forEach((item) =>
+        datas.push({ id: item.id, name: item.data().filename }),
+      )
 
-    const listRef = ref(storage)
-    const resList = await listAll(listRef)
-    let items = []
+      const listRef = ref(storage)
+      const resList = await listAll(listRef)
+      let items = []
 
-    await Promise.all(
-      resList.items.map(async (item) => {
-        const { name } = item
-        if (datas.some((data) => data.name === name)) {
-          const { id } = datas.find((data) => data.name === name)
-          const url = await getDownloadURL(item)
-          const meta = await getMetadata(item)
-          items.push({
-            id: id,
-            name: name,
-            url: url,
-            size: meta.size,
-            type: meta.contentType,
-            lastUpdated: meta.updated,
-          })
-        }
-      }),
-    )
-    setLoading(false)
-    return items
+      await Promise.all(
+        resList.items.map(async (item) => {
+          const { name } = item
+          if (datas.some((data) => data.name === name)) {
+            const { id } = datas.find((data) => data.name === name)
+            const url = await getDownloadURL(item)
+            const meta = await getMetadata(item)
+            items.push({
+              id: id,
+              name: name,
+              url: url,
+              size: meta.size,
+              type: meta.contentType,
+              lastUpdated: meta.updated,
+            })
+          }
+        }),
+      )
+      setLoading(false)
+      return items
+    } catch (err) {
+      const error = translationFirebaseErrorsEN(err.code)
+      toast(error, { type: 'error' })
+    }
   }
 
   const getAllImage = async () => {
-    setLoading(true)
-    const files = await getAll()
-    const filtered = files.filter((file) => file['type'].includes('image'))
-    setFiles(filtered)
-    setType(1)
-    setLoading(false)
+    try {
+      setLoading(true)
+      const files = await getAll()
+      const filtered = files.filter((file) => file['type'].includes('image'))
+      setFiles(filtered)
+      setType(1)
+      setLoading(false)
+    } catch (err) {
+      const error = translationFirebaseErrorsEN(err.code)
+      toast(error, { type: 'error' })
+    }
   }
 
   const getAllVideos = async () => {
-    setLoading(true)
-    const files = await getAll()
-    const filtered = files.filter((file) => file['type'].includes('video'))
-    setFiles(filtered)
-    setType(2)
-    setLoading(false)
+    try {
+      setLoading(true)
+      const files = await getAll()
+      const filtered = files.filter((file) => file['type'].includes('video'))
+      setFiles(filtered)
+      setType(2)
+      setLoading(false)
+    } catch (err) {
+      const error = translationFirebaseErrorsEN(err.code)
+      toast(error, { type: 'error' })
+    }
   }
 
   const getAllAudio = async () => {
-    setLoading(true)
-    const files = await getAll()
-    const filtered = files.filter((file) => file['type'].includes('audio'))
-    setFiles(filtered)
-    setType(3)
-    setLoading(false)
+    try {
+      setLoading(true)
+      const files = await getAll()
+      const filtered = files.filter((file) => file['type'].includes('audio'))
+      setFiles(filtered)
+      setType(3)
+      setLoading(false)
+    } catch (err) {
+      const error = translationFirebaseErrorsEN(err.code)
+      toast(error, { type: 'error' })
+    }
   }
 
   const getAllDocuments = async () => {
-    setLoading(true)
-    const files = await getAll()
-    const filtered = files.filter((file) =>
-      file['type'].includes('application'),
-    )
-    setFiles(filtered)
-    setType(4)
-    setLoading(false)
+    try {
+      setLoading(true)
+      const files = await getAll()
+      const filtered = files.filter((file) =>
+        file['type'].includes('application'),
+      )
+      setFiles(filtered)
+      setType(4)
+      setLoading(false)
+    } catch (err) {
+      const error = translationFirebaseErrorsEN(err.code)
+      toast(error, { type: 'error' })
+    }
   }
 
   const getAllFiles = async () => {
-    setLoading(true)
-    const files = await getAll()
-    setFiles(files)
-    setType(0)
-    setLoading(false)
+    try {
+      setLoading(true)
+      const files = await getAll()
+      setFiles(files)
+      setType(0)
+      setLoading(false)
+    } catch (err) {
+      const error = translationFirebaseErrorsEN(err.code)
+      toast(error, { type: 'error' })
+    }
   }
 
   useEffect(() => {
@@ -112,12 +147,26 @@ export default function DashBoard() {
   }, [])
 
   const columns = [
-    { field: 'id', headerName: 'Id', width: 225 },
-    { field: 'name', headerName: 'File Name', width: 300 },
+    {
+      field: 'id',
+      headerName: 'Id',
+      flex: 1,
+      minWidth: 225,
+      headerClassName: 'super-app-theme--header',
+    },
+    {
+      field: 'name',
+      headerName: 'File Name',
+      flex: 1,
+      minWidth: 340,
+      headerClassName: 'super-app-theme--header',
+    },
     {
       field: 'lastUpdated',
       headerName: 'Last Updated',
-      width: 150,
+      headerClassName: 'super-app-theme--header',
+      flex: 0.3,
+      minWidth: 150,
       valueGetter: (params) => {
         let newDate = new Date(params.row.lastUpdated)
         return (
@@ -137,7 +186,10 @@ export default function DashBoard() {
     {
       field: 'size',
       headerName: 'Size',
-      width: 125,
+      headerClassName: 'super-app-theme--header',
+      flex: 0.3,
+      minWidth: 120,
+      filterable: false,
       valueGetter: (params) => {
         const size = params.row.size
         if (!+size) return '0 Bytes'
@@ -154,9 +206,13 @@ export default function DashBoard() {
     {
       field: 'remove',
       headerName: 'Remove',
-      width: 100,
+      headerClassName: 'super-app-theme--header',
+      flex: 0.3,
+      minWidth: 100,
       headerAlign: 'center',
       align: 'center',
+      sortable: false,
+      filterable: false,
       renderCell: ({ row }) => (
         <IconButton onClick={() => handleRemove(row.id)} size="small">
           <RemoveCircleIcon sx={{ color: '#c92216' }} />
@@ -205,7 +261,7 @@ export default function DashBoard() {
             width: '70vw',
           }}
         >
-          <div style={{ transform: 'translate(5em, 5em)' }}>
+          <div style={{ transform: 'translate(5em, 3em)' }}>
             <ButtonGroup
               variant="contained"
               aria-label="outlined primary button group"
@@ -218,19 +274,24 @@ export default function DashBoard() {
               <Button onClick={getAllVideos}>Videos</Button>
             </ButtonGroup>
           </div>
+
           <DataGrid
-            pageSize={5}
+            pageSize={10}
             rows={files}
             columns={columns}
             loading={loading}
-            size="small"
-            style={{
+            sx={{
               boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
               fontFamily: 'Work Sans',
-              transform: 'translate(5em, 7em)',
+              transform: 'translate(5em, 5em)',
+              '& .super-app-theme--header': {
+                fontFamily: 'Roboto',
+                fontWeight: 700,
+              },
             }}
           />
         </div>
+        <Toast />
       </>
     )
 

@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import { translationFirebaseErrorsEN } from 'react-translation-firebase-errors'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { collection, addDoc } from 'firebase/firestore'
+import Typography from '@mui/material/Typography'
 
 import Toast from '../components/Toast'
 
@@ -67,7 +68,7 @@ export default function Upload() {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log('File available at', downloadURL)
-            toast('Upload Successfully!', { type: 'success' })
+            toast('Upload Successfully!', { type: 'default' })
             addToFireStore(file.name)
             setIsUploading(false)
           })
@@ -95,10 +96,12 @@ export default function Upload() {
           Upload
         </p>
       </div>
-      <section className="container">
+      <section style={{ transform: 'translate(11em, 7em)' }}>
         <div
           {...getRootProps({ className: 'dropzone' })}
           style={{
+            color: '#1565c0',
+            fontFamily: 'Nunito',
             border: '2px #1565c0 dashed',
             borderRadius: '15px',
             background: '#dadada',
@@ -109,7 +112,7 @@ export default function Upload() {
             alignItems: 'center',
             padding: 50,
             textAlign: 'center',
-            transform: 'translate(9em, 5em)',
+
             cursor: 'pointer',
           }}
         >
@@ -121,22 +124,25 @@ export default function Upload() {
           )}
         </div>
         {isUploading && (
-          <Box sx={{ width: '100%', border: '1px black solid' }}>
-            <LinearProgress value={progress} variant="determinate" />
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ width: '90%', mr: '1px' }}>
+              <LinearProgress
+                value={progress}
+                variant="determinate"
+                sx={{ height: 7 }}
+              />
+            </Box>
+            <Box sx={{ minWidth: 35 }}>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ fontFamily: 'Roboto' }}
+              >{`${Math.round(progress)}%`}</Typography>
+            </Box>
           </Box>
         )}
-
-        {/* <LinearProgress
-          value={progress}
-          variant="determinate"
-          sx={{
-            width: '30vw',
-            positio
-          }}
-        /> */}
-
-        <Toast />
       </section>
+      <Toast />
     </>
   )
 }
