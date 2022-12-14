@@ -7,12 +7,23 @@ import LoginPage from '../pages/LoginPage'
 import MainPage from '../pages/MainPage'
 import Upload from '../pages/Upload'
 import Trash from '../pages/Trash'
+import FrontPage from '../pages/FrontPage'
+import HomePage from '../pages/HomePage'
 
 export default function Routes() {
   let element = useRoutes([
     {
-      path: '/',
-      element: <LoginPage />,
+      element: <FrontPage />,
+      children: [
+        {
+          path: '/',
+          element: <HomePage />,
+        },
+        {
+          path: '/login',
+          element: <LoginPage />,
+        },
+      ],
     },
     {
       element: <MainPage />,

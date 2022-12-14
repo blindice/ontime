@@ -14,7 +14,6 @@ import './Files.css'
 export default function Files() {
   const [type, setType] = useState(0)
   const [files, setFiles] = useState([])
-  const [loading, setLoading] = useState(false)
 
   const downloadFile = async (url) => {
     window.open(url, '_blank')
@@ -22,7 +21,6 @@ export default function Files() {
 
   const getAll = async () => {
     try {
-      setLoading(true)
       const list = query(
         collection(db, 'files'),
         where('isDeleted', '==', false),
@@ -55,7 +53,6 @@ export default function Files() {
           }
         }),
       )
-      setLoading(false)
       return items
     } catch (err) {
       const error = translationFirebaseErrorsEN(err.code)
@@ -64,12 +61,10 @@ export default function Files() {
   }
   const getAllImage = async () => {
     try {
-      setLoading(true)
       const files = await getAll()
       const filtered = files.filter((file) => file['type'].includes('image'))
       setFiles(filtered)
       setType(1)
-      setLoading(false)
     } catch (err) {
       const error = translationFirebaseErrorsEN(err.code)
       toast(error, { type: 'error' })
@@ -78,12 +73,10 @@ export default function Files() {
 
   const getAllVideos = async () => {
     try {
-      setLoading(true)
       const files = await getAll()
       const filtered = files.filter((file) => file['type'].includes('video'))
       setFiles(filtered)
       setType(2)
-      setLoading(false)
     } catch (err) {
       const error = translationFirebaseErrorsEN(err.code)
       toast(error, { type: 'error' })
@@ -92,12 +85,10 @@ export default function Files() {
 
   const getAllAudio = async () => {
     try {
-      setLoading(true)
       const files = await getAll()
       const filtered = files.filter((file) => file['type'].includes('audio'))
       setFiles(filtered)
       setType(3)
-      setLoading(false)
     } catch (err) {
       const error = translationFirebaseErrorsEN(err.code)
       toast(error, { type: 'error' })
@@ -106,14 +97,12 @@ export default function Files() {
 
   const getAllDocuments = async () => {
     try {
-      setLoading(true)
       const files = await getAll()
       const filtered = files.filter((file) =>
         file['type'].includes('application'),
       )
       setFiles(filtered)
       setType(4)
-      setLoading(false)
     } catch (err) {
       const error = translationFirebaseErrorsEN(err.code)
       toast(error, { type: 'error' })
@@ -335,29 +324,9 @@ export default function Files() {
                               maxHeight: 80,
                               width: 'auto',
                               maxWidth: 80,
-                              marginLeft: '30%',
+                              marginLeft: '34%',
                             }}
-                            src={
-                              f.name.includes('.pdf')
-                                ? '/images/pdf.png'
-                                : f.name.includes('.doc') ||
-                                  f.name.includes('.docx')
-                                ? '/images/doc.png'
-                                : f.name.includes('.htm') ||
-                                  f.name.includes('.html')
-                                ? '/images/html.png'
-                                : f.name.includes('.xls') ||
-                                  f.name.includes('.xlsx')
-                                ? '/images/xls.png'
-                                : f.name.includes('.ppt') ||
-                                  f.name.includes('.pptx')
-                                ? '/images/ppt.png'
-                                : f.name.includes('.txt')
-                                ? '/images/txt.png'
-                                : f.name.includes('.csv')
-                                ? '/images/csv.png'
-                                : ''
-                            }
+                            src="/images/file-icon.png"
                           />
                         }
                       >
