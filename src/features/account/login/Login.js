@@ -51,7 +51,6 @@ export default function Login() {
               label="Username"
               variant="outlined"
               size="small"
-              error={errors.username ? true : false}
             />
           )}
         />

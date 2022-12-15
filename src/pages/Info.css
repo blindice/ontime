@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=K2D:ital@1&display=swap');
+
+.info-body {
+  background-attachment: fixed;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: scaleBackGround;
+  animation-name: scaleBackGround;
+}
+
+.info-container {
+  font-family: 'K2D', sans-serif;
+  color: white;
+  margin-left: 20px;
+  margin-top: 1em;
+  margin-bottom: 50px;
+  text-shadow: -1px 2px 1px rgba(39, 41, 35, 0.68);
+  position: absolute;
+  height: 90vh;
+  width: 60vw;
+  top: 5em;
+  left: 25em;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+}
+
+.info-title {
+  font-family: 'K2D', sans-serif;
+  color: white;
+  font-size: 60px;
+  text-shadow: -1px 1px 2px rgba(39, 41, 35, 0.68);
+}
+
+.info-container p {
+  position: relative;
+  text-indent: 50px;
+  font-size: 20px;
+}
+
+@-webkit-keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes scaleBackGround {
+  0% {
+    background-size: 2070px;
+  }
+  100% {
+    background-size: 4300px;
+  }
+}
+
+@keyframes scaleBackGround {
+  0% {
+    background-size: 2070px;
+  }
+  100% {
+    background-size: 4300px;
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+  @-webkit-keyframes scaleBackGround {
+    0% {
+      background-size: 1400px;
+    }
+    100% {
+      background-size: 2750px;
+    }
+  }
+
+  @keyframes scaleBackGround {
+    0% {
+      background-size: 1400px;
+    }
+    100% {
+      background-size: 2750px;
+    }
+  }
+
+  .info-title {
+    font-family: 'K2D', sans-serif;
+    color: white;
+    text-shadow: -1px 1px 2px rgba(39, 41, 35, 0.68);
+  }
+
+  .info-container {
+    font-family: 'K2D', sans-serif;
+    color: white;
+    margin-left: 20px;
+    text-shadow: -1px 1px 2px rgba(39, 41, 35, 0.68);
+    width: 60vw;
+    top: 3em;
+    left: 17em;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+  }
+
+  .info-container p {
+    text-indent: 50px;
+    font-size: 13px;
+  }
+}

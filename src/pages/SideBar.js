@@ -4,8 +4,12 @@ import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 import AttachFileRoundedIcon from '@mui/icons-material/AttachFileRounded'
 import CloudUploadRoundedIcon from '@mui/icons-material/CloudUploadRounded'
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
+import { useSelector } from 'react-redux'
+import { Box } from '@mui/material'
 
 export default function SideBar() {
+  const { isAdmin } = useSelector((state) => state.account)
+
   return (
     <>
       <Sidebar
@@ -65,19 +69,23 @@ export default function SideBar() {
             {' '}
             FILES
           </MenuItem>
-          <MenuItem
-            routerLink={<Link to="/upload" />}
-            prefix={<CloudUploadRoundedIcon />}
-          >
-            {' '}
-            UPLOAD
-          </MenuItem>
-          <MenuItem
-            routerLink={<Link to="/trash" />}
-            prefix={<DeleteRoundedIcon />}
-          >
-            TRASH
-          </MenuItem>
+          <Box display={!isAdmin && { sm: 'none' }}>
+            <MenuItem
+              routerLink={<Link to="/upload" />}
+              prefix={<CloudUploadRoundedIcon />}
+            >
+              {' '}
+              UPLOAD
+            </MenuItem>
+          </Box>
+          <Box display={!isAdmin && { sm: 'none' }}>
+            <MenuItem
+              routerLink={<Link to="/trash" />}
+              prefix={<DeleteRoundedIcon />}
+            >
+              TRASH
+            </MenuItem>
+          </Box>
         </Menu>
       </Sidebar>
     </>

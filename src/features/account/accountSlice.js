@@ -5,6 +5,7 @@ import { translationFirebaseErrorsEN } from 'react-translation-firebase-errors'
 import jwt from 'jwt-decode'
 
 const initialState = {
+  isAdmin: false,
   isLoggedIn: false,
   isLoading: false,
   token: localStorage.getItem('token'),
@@ -22,8 +23,9 @@ export const loginAsync = createAsyncThunk(
       const { accessToken } = credentials.user
       localStorage.setItem('token', accessToken)
       const { email } = jwt(accessToken)
+      const isAdmin = String(email).includes('@admin')
       console.log(email)
-      return { email, accessToken }
+      return { email, accessToken, isAdmin }
     } catch (err) {
       if (err.code) {
         const error = translationFirebaseErrorsEN(err.code)
@@ -50,6 +52,7 @@ const accountSlice = createSlice({
         state.isLoading = true
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
+        state.isAdmin = action.payload.isAdmin
         state.token = action.payload.accessToken
         state.isLoggedIn = true
         state.isLoading = false
@@ -64,6 +67,7 @@ const accountSlice = createSlice({
         state.isLoading = true
       })
       .addCase(logoutAsync.fulfilled, (state, action) => {
+        state.isAdmin = false
         state.token = ''
         state.isLoggedIn = false
         state.isLoading = false

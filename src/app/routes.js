@@ -9,6 +9,8 @@ import Upload from '../pages/Upload'
 import Trash from '../pages/Trash'
 import FrontPage from '../pages/FrontPage'
 import HomePage from '../pages/HomePage'
+import AboutPage from '../pages/AboutPage'
+import InfoPage from '../pages/InfoPage'
 
 export default function Routes() {
   let element = useRoutes([
@@ -18,6 +20,14 @@ export default function Routes() {
         {
           path: '/',
           element: <HomePage />,
+        },
+        {
+          path: '/about',
+          element: <AboutPage />,
+        },
+        {
+          path: '/info',
+          element: <InfoPage />,
         },
         {
           path: '/login',

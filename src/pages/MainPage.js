@@ -2,18 +2,25 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
 
-import withHeaderAndFooter from '../components/withHeaderAndFooter'
+import withTemplate from '../components/withTemplate'
 
 function MainPage() {
-  const { token, isLoggedIn } = useSelector((state) => state.account)
+  const { token } = useSelector((state) => state.account)
 
-  useEffect(() => {})
+  useEffect(() => {
+    document.body.classList.add('main-page')
+
+    return () => document.body.classList.remove('main-page')
+  }, [])
 
   return (
-    <div className="container" style={{ height: '87vh', width: '78vw' }}>
-      {token && isLoggedIn ? <Outlet /> : <Navigate replace to="/" />}
+    <div
+      className="container"
+      style={{ height: '92vh', width: '78vw', backgroundColor: 'white' }}
+    >
+      {token ? <Outlet /> : <Navigate replace to="/" />}
     </div>
   )
 }
 
-export default withHeaderAndFooter(MainPage)
+export default withTemplate(MainPage)

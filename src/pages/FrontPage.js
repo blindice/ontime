@@ -1,7 +1,13 @@
 import React from 'react'
 import { Outlet, NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 
 export default function FrontPage() {
+  const token = useSelector((state) => state.account.token)
+  if (token) {
+    return <Navigate replace to="/dashboard" />
+  }
   return (
     <>
       <div

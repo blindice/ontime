@@ -11,6 +11,7 @@ import {
 } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 import { translationFirebaseErrorsEN } from 'react-translation-firebase-errors'
+import { useSelector } from 'react-redux'
 
 import { ref, listAll, getDownloadURL, getMetadata } from 'firebase/storage'
 import { DataGrid } from '@mui/x-data-grid'
@@ -21,6 +22,7 @@ import ButtonGroup from '@mui/material/ButtonGroup'
 import Toast from '../components/Toast'
 
 export default function DashBoard() {
+  const { isAdmin } = useSelector((state) => state.account)
   const [type, setType] = useState(0)
   const [files, setFiles] = useState([])
   const [loading, setLoading] = useState(false)
@@ -279,6 +281,10 @@ export default function DashBoard() {
             pageSize={10}
             rows={files}
             columns={columns}
+            columnVisibilityModel={{
+              // Hide columns status and traderName, the other columns will remain visible
+              remove: isAdmin,
+            }}
             loading={loading}
             sx={{
               boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',

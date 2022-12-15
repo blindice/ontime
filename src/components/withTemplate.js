@@ -1,9 +1,8 @@
 import React from 'react'
 import SideBar from '../pages/SideBar'
 import CustomHeader from './CustomHeader'
-import Header from './Header'
 
-import './withHeaderAndFooter.css'
+import './withTemplate.css'
 
 const withHeaderAndFooter = (OriginalComponent) => {
   function UpdatedComponent(props) {
