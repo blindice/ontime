@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { AwesomeButton } from 'react-awesome-button'
+import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 import './HomePage.css'
@@ -21,14 +22,9 @@ export default function HomePage() {
           Effective auditing procedures may also be utilized to ensure data
           integrity.
         </p>
-        <AwesomeButton
-          className="aws"
-          type="primary"
-          href="https://www.investopedia.com/terms/c/cloud-computing.asp"
-          onPress={() => navigate('/info')}
-        >
+        <Button variant="contained" onClick={() => navigate('/info')}>
           Learn More
-        </AwesomeButton>
+        </Button>
       </div>
       <div className="cloud-logo">
         <img

@@ -4,11 +4,12 @@ import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
 import AttachFileRoundedIcon from '@mui/icons-material/AttachFileRounded'
 import CloudUploadRoundedIcon from '@mui/icons-material/CloudUploadRounded'
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
-import { useSelector } from 'react-redux'
 import { Box } from '@mui/material'
 
+import useRole from '../hooks/useRole'
+
 export default function SideBar() {
-  const { isAdmin } = useSelector((state) => state.account)
+  const { isAdmin } = useRole()
 
   return (
     <>
@@ -22,20 +23,24 @@ export default function SideBar() {
         }}
       >
         <div style={{ marginBottom: '10em', fontFamily: 'Work Sans' }}>
-          <p style={{ fontSize: '24px', fontWeight: 300 }}>
-            <span>
-              <img
-                alt="logo"
-                src="/images/upbox-icon.png"
-                style={{
-                  height: '7vh',
-                  marginLeft: '3em',
-                  transform: 'translate(4px, 7px)',
-                }}
-              ></img>
-            </span>
-            BoX
-          </p>
+          <span>
+            <img
+              alt="logo"
+              src="/images/upbox-icon.png"
+              style={{
+                height: '6em',
+                transform: 'translate(4.5em, 1em)',
+              }}
+            ></img>
+            {/* <p
+              style={{
+                fontSize: '30px',
+                transform: 'translate(3.2em,-1.2em)',
+              }}
+            >
+              BoX
+            </p> */}
+          </span>
         </div>
         <Menu
           menuItemStyles={{

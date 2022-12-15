@@ -11,7 +11,6 @@ import {
 } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 import { translationFirebaseErrorsEN } from 'react-translation-firebase-errors'
-import { useSelector } from 'react-redux'
 
 import { ref, listAll, getDownloadURL, getMetadata } from 'firebase/storage'
 import { DataGrid } from '@mui/x-data-grid'
@@ -20,9 +19,10 @@ import IconButton from '@mui/material/IconButton'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import Toast from '../components/Toast'
+import useRole from '../hooks/useRole'
 
 export default function DashBoard() {
-  const { isAdmin } = useSelector((state) => state.account)
+  const { isAdmin } = useRole()
   const [type, setType] = useState(0)
   const [files, setFiles] = useState([])
   const [loading, setLoading] = useState(false)
