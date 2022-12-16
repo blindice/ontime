@@ -38,7 +38,16 @@ export default function Login() {
   return (
     <div>
       <form onSubmit={handleSubmit(handleLogin)} css={style.form}>
-        <h1 css={style.label}>UpBox</h1>
+        <h1 css={style.label}>
+          <img
+            alt="white-logo"
+            src="/images/upbox_white.png"
+            style={{
+              height: '1.5em',
+            }}
+          />
+          UpBox
+        </h1>
         <Controller
           name="username"
           control={control}
