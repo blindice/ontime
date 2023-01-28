@@ -24,7 +24,6 @@ export const loginAsync = createAsyncThunk(
       localStorage.setItem("token", accessToken);
       const { email } = jwt(accessToken);
       const isAdmin = String(email).includes("@admin");
-      console.log(email);
       return { email, accessToken, isAdmin };
     } catch (err) {
       if (err.code) {
