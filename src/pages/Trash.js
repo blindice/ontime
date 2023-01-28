@@ -229,16 +229,6 @@ export default function Trash() {
       const datas = await getAll();
       setFiles(datas);
     })();
-    return async () => {
-      await audit({
-        user: email,
-        activity: "Viewing",
-        date: Date.now(),
-        description: "Viewing on Trash",
-        priority: "Low",
-        status: "Success",
-      });
-    };
   }, []);
 
   const columns = [

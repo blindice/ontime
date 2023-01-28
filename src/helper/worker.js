@@ -7,7 +7,10 @@ export const audit = async (data) => {
     current.getMonth() + 1
   }/${current.getDate()}/${current.getFullYear()} ${
     ((current.getHours() + 11) % 12) + 1
-  }:${current.getMinutes()}`;
+  }:${current.getMinutes()}:${String(current.getUTCSeconds()).padStart(
+    2,
+    "0"
+  )}`;
   await addDoc(collection(db, "audit"), {
     user: data.user,
     activity: data.activity,

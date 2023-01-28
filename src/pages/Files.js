@@ -146,7 +146,7 @@ export default function Files() {
       await audit({
         user: email,
         activity: "Viewing",
-        description: "Viewing Images on Files",
+        description: "Viewing Audios on Files",
         priority: "Low",
         status: "Success",
       });
@@ -154,7 +154,7 @@ export default function Files() {
       await audit({
         user: email,
         activity: "Viewing",
-        description: "Viewing Images on Files",
+        description: "Viewing Audios on Files",
         priority: "Low",
         status: "Failed",
       });

@@ -217,15 +217,6 @@ export default function DashBoard() {
       const datas = await getAll();
       setFiles(datas);
     })();
-    return async () => {
-      await audit({
-        user: email,
-        activity: "Viewing",
-        description: "Viewing DashBoard",
-        priority: "Low",
-        status: "Success",
-      });
-    };
   }, []);
 
   const columns = [

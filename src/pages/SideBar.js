@@ -6,10 +6,15 @@ import CloudUploadRoundedIcon from "@mui/icons-material/CloudUploadRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import BrightnessAutoRoundedIcon from "@mui/icons-material/BrightnessAutoRounded";
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
 
 import useRole from "../hooks/useRole";
+import { audit } from "../helper/worker";
+import useEmail from "../hooks/useEmail";
 
 export default function SideBar() {
+  const { token } = useSelector((state) => state.account);
+  const { email } = useEmail(token);
   const { isAdmin } = useRole();
 
   return (
@@ -64,6 +69,15 @@ export default function SideBar() {
           <MenuItem
             routerLink={<Link to="/dashboard" />}
             prefix={<DashboardRoundedIcon />}
+            onClick={async () => {
+              await audit({
+                user: email,
+                activity: "Viewing",
+                description: "Viewing DashBoard",
+                priority: "Low",
+                status: "Success",
+              });
+            }}
           >
             {" "}
             DASHBOARD
@@ -88,6 +102,15 @@ export default function SideBar() {
             <MenuItem
               routerLink={<Link to="/trash" />}
               prefix={<DeleteRoundedIcon />}
+              onClick={async () => {
+                await audit({
+                  user: email,
+                  activity: "Viewing",
+                  description: "Viewing on Trash",
+                  priority: "Low",
+                  status: "Success",
+                });
+              }}
             >
               TRASH
             </MenuItem>
