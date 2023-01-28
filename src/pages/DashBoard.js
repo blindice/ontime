@@ -95,6 +95,14 @@ export default function DashBoard() {
       setType(1);
       setLoading(false);
     } catch (err) {
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Images on DashBoard",
+        priority: "Low",
+        status: "Failed",
+      });
       const error = translationFirebaseErrorsEN(err.code);
       toast(error, { type: "error" });
     }
@@ -119,6 +127,14 @@ export default function DashBoard() {
       setType(2);
       setLoading(false);
     } catch (err) {
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Videos on DashBoard",
+        priority: "Low",
+        status: "Failed",
+      });
       const error = translationFirebaseErrorsEN(err.code);
       toast(error, { type: "error" });
     }
@@ -143,6 +159,14 @@ export default function DashBoard() {
       setType(3);
       setLoading(false);
     } catch (err) {
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Audios on DashBoard",
+        priority: "Low",
+        status: "Failed",
+      });
       const error = translationFirebaseErrorsEN(err.code);
       toast(error, { type: "error" });
     }
@@ -169,6 +193,14 @@ export default function DashBoard() {
       setType(4);
       setLoading(false);
     } catch (err) {
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Documents on DashBoard",
+        priority: "Low",
+        status: "Failed",
+      });
       const error = translationFirebaseErrorsEN(err.code);
       toast(error, { type: "error" });
     }
