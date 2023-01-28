@@ -1,8 +1,8 @@
-import React from 'react'
-import SideBar from '../pages/SideBar'
-import CustomHeader from './CustomHeader'
+import React from "react";
+import SideBar from "../pages/SideBar";
+import CustomHeader from "./CustomHeader";
 
-import './withTemplate.css'
+import "./withTemplate.css";
 
 const withHeaderAndFooter = (OriginalComponent) => {
   function UpdatedComponent(props) {
@@ -18,9 +18,9 @@ const withHeaderAndFooter = (OriginalComponent) => {
           <OriginalComponent />
         </div>
       </div>
-    )
+    );
   }
-  return UpdatedComponent
-}
+  return UpdatedComponent;
+};
 
-export default withHeaderAndFooter
+export default withHeaderAndFooter;

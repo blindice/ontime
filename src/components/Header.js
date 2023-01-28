@@ -1,16 +1,16 @@
-import React, { useRef } from 'react'
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import MenuItem from '@mui/material/MenuItem'
-import { NavLink } from 'react-router-dom'
-import { Box } from '@mui/system'
-import { AwesomeButtonProgress } from 'react-awesome-button'
-import { storage } from '../app/db'
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import React, { useRef } from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import MenuItem from "@mui/material/MenuItem";
+import { NavLink } from "react-router-dom";
+import { Box } from "@mui/system";
+import { AwesomeButtonProgress } from "react-awesome-button";
+import { storage } from "../app/db";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
-import 'react-awesome-button/dist/styles.css'
-import Logout from '../features/account/logout/Logout'
+import "react-awesome-button/dist/styles.css";
+import Logout from "../features/account/logout/Logout";
 
 export default function Header() {
   return (
@@ -24,17 +24,17 @@ export default function Header() {
             href="/dashboard"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
             UpBox
           </Typography>
-          <Box style={{ display: 'flex' }} sx={{ flexGrow: 1 }}>
+          <Box style={{ display: "flex" }} sx={{ flexGrow: 1 }}>
             <MenuItem>
               <Typography variant="subtitle2" textAlign="center">
                 <NavLink to="dashboard">DashBoard</NavLink>
@@ -87,5 +87,5 @@ export default function Header() {
         </Toolbar>
       </AppBar>
     </>
-  )
+  );
 }
