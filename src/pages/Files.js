@@ -20,8 +20,16 @@ export default function Files() {
   const [type, setType] = useState(0);
   const [files, setFiles] = useState([]);
 
-  const downloadFile = async (url) => {
+  const downloadFile = async (url, name) => {
+    console.log(name);
     window.open(url, "_blank");
+    await audit({
+      user: email,
+      activity: "Download",
+      description: `Downloaded ${name}`,
+      priority: "Medium",
+      status: "Success",
+    });
   };
 
   const getAll = async () => {
@@ -74,7 +82,6 @@ export default function Files() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Images on Files",
         priority: "Low",
         status: "Success",
@@ -83,7 +90,6 @@ export default function Files() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Images on Files",
         priority: "Low",
         status: "Failed",
@@ -103,7 +109,6 @@ export default function Files() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Videos on Files",
         priority: "Low",
         status: "Success",
@@ -112,7 +117,6 @@ export default function Files() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Videos on Files",
         priority: "Low",
         status: "Failed",
@@ -132,7 +136,6 @@ export default function Files() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Images on Files",
         priority: "Low",
         status: "Success",
@@ -141,7 +144,6 @@ export default function Files() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Images on Files",
         priority: "Low",
         status: "Failed",
@@ -163,7 +165,6 @@ export default function Files() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Documents on Files",
         priority: "Low",
         status: "Success",
@@ -172,7 +173,6 @@ export default function Files() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Documents on Files",
         priority: "Low",
         status: "Failed",
@@ -226,7 +226,7 @@ export default function Files() {
                 <Image.PreviewGroup>
                   {files.map((f) => {
                     return (
-                      <Tooltip placement="bottom" title={f.name}>
+                      <Tooltip placement="bottom" title={f.name} key={f.url}>
                         <Card
                           style={{
                             width: 200,
@@ -260,15 +260,8 @@ export default function Files() {
                               bottom: "10px",
                             }}
                             onClick={async () => {
-                              downloadFile(f.url);
-                              await audit({
-                                user: email,
-                                activity: "Download",
-                                date: Date.now(),
-                                description: `Downloaded ${f.name}`,
-                                priority: "Medium",
-                                status: "Success",
-                              });
+                              console.log(f.name);
+                              downloadFile(f.url, f.name);
                             }}
                           >
                             Download
@@ -297,7 +290,7 @@ export default function Files() {
                 <Image.PreviewGroup>
                   {files.map((f) => {
                     return (
-                      <Tooltip placement="bottom" title={f.name}>
+                      <Tooltip placement="bottom" title={f.name} key={f.url}>
                         <Card
                           style={{
                             width: 200,
@@ -315,12 +308,28 @@ export default function Files() {
                                 marginLeft: "5%",
                               }}
                               controls
+                              controlsList="nodownload"
                             >
                               <source src={f.url} />
                             </video>
                           }
                         >
                           <Card.Meta title={f.name} />
+                          <Button
+                            variant="contained"
+                            type="primary"
+                            size="small"
+                            style={{
+                              marginTop: 20,
+                              width: "80%",
+                              position: "absolute",
+                              left: "20px",
+                              bottom: "10px",
+                            }}
+                            onClick={() => downloadFile(f.url, f.name)}
+                          >
+                            Download
+                          </Button>
                         </Card>
                       </Tooltip>
                     );
@@ -345,7 +354,7 @@ export default function Files() {
                 <Image.PreviewGroup>
                   {files.map((f) => {
                     return (
-                      <Tooltip placement="bottom" title={f.name}>
+                      <Tooltip placement="bottom" title={f.name} key={f.url}>
                         <Card
                           style={{
                             width: 200,
@@ -362,12 +371,28 @@ export default function Files() {
                                 maxWidth: 200,
                               }}
                               controls
+                              controlsList="nodownload"
                             >
                               <source src={f.url} />
                             </video>
                           }
                         >
                           <Card.Meta title={f.name} />
+                          <Button
+                            variant="contained"
+                            type="primary"
+                            size="small"
+                            style={{
+                              marginTop: 20,
+                              width: "80%",
+                              position: "absolute",
+                              left: "20px",
+                              bottom: "10px",
+                            }}
+                            onClick={() => downloadFile(f.url, f.name)}
+                          >
+                            Download
+                          </Button>
                         </Card>
                       </Tooltip>
                     );
@@ -391,7 +416,7 @@ export default function Files() {
               <div className="image-container">
                 {files.map((f) => {
                   return (
-                    <Tooltip placement="bottom" title={f.name}>
+                    <Tooltip placement="bottom" title={f.name} key={f.url}>
                       <Card
                         style={{
                           width: 200,
@@ -425,7 +450,7 @@ export default function Files() {
                             left: "20px",
                             bottom: "10px",
                           }}
-                          onClick={() => downloadFile(f.url)}
+                          onClick={() => downloadFile(f.url, f.name)}
                         >
                           Download
                         </Button>

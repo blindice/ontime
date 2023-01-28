@@ -83,7 +83,6 @@ export default function DashBoard() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Images on DashBoard",
         priority: "Low",
         status: "Success",
@@ -98,7 +97,6 @@ export default function DashBoard() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Images on DashBoard",
         priority: "Low",
         status: "Failed",
@@ -115,7 +113,6 @@ export default function DashBoard() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Videos on DashBoard",
         priority: "Low",
         status: "Success",
@@ -130,7 +127,6 @@ export default function DashBoard() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Videos on DashBoard",
         priority: "Low",
         status: "Failed",
@@ -147,7 +143,6 @@ export default function DashBoard() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Audios on DashBoard",
         priority: "Low",
         status: "Success",
@@ -162,7 +157,6 @@ export default function DashBoard() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Audios on DashBoard",
         priority: "Low",
         status: "Failed",
@@ -179,7 +173,6 @@ export default function DashBoard() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Documents on DashBoard",
         priority: "Low",
         status: "Success",
@@ -191,12 +184,12 @@ export default function DashBoard() {
       );
       setFiles(filtered);
       setType(4);
+
       setLoading(false);
     } catch (err) {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing Documents on DashBoard",
         priority: "Low",
         status: "Failed",
@@ -228,7 +221,6 @@ export default function DashBoard() {
       await audit({
         user: email,
         activity: "Viewing",
-        date: Date.now(),
         description: "Viewing DashBoard",
         priority: "Low",
         status: "Success",
@@ -304,14 +296,14 @@ export default function DashBoard() {
       sortable: false,
       filterable: false,
       renderCell: ({ row }) => (
-        <IconButton onClick={() => handleRemove(row.id)} size="small">
+        <IconButton onClick={() => handleRemove(row.id, row.name)} size="small">
           <RemoveCircleIcon sx={{ color: "#c92216" }} />
         </IconButton>
       ),
     },
   ];
 
-  const handleRemove = (id) => {
+  const handleRemove = (id, name) => {
     const ref = doc(db, "files", id);
     updateDoc(ref, { isDeleted: true })
       .then(() => {
@@ -332,7 +324,7 @@ export default function DashBoard() {
           user: email,
           activity: "Removing",
           date: Date.now(),
-          description: "Removing files on DashBoard",
+          description: `Removed ${name} on DashBoard`,
           priority: "Medium",
           status: "Success",
         });
