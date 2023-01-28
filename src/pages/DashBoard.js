@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { translationFirebaseErrorsEN } from "react-translation-firebase-errors";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
 import { DataGrid } from "@mui/x-data-grid";

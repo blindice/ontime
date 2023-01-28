@@ -1,47 +1,52 @@
-import React, { useState } from 'react'
-import { storage, db } from '../app/db'
-import { ref, listAll, getDownloadURL, getMetadata } from 'firebase/storage'
-import { collection, query, where, getDocs } from 'firebase/firestore'
-import { Button } from '@mui/material'
-import ButtonGroup from '@mui/material/ButtonGroup'
-import { Image, Card, Tooltip, Result } from 'antd'
-import { toast } from 'react-toastify'
-import { translationFirebaseErrorsEN } from 'react-translation-firebase-errors'
+import React, { useState } from "react";
+import { storage, db } from "../app/db";
+import { ref, listAll, getDownloadURL, getMetadata } from "firebase/storage";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { Button } from "@mui/material";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import { Image, Card, Tooltip, Result } from "antd";
+import { toast } from "react-toastify";
+import { translationFirebaseErrorsEN } from "react-translation-firebase-errors";
+import { useSelector } from "react-redux";
 
-import Toast from '../components/Toast'
-import './Files.css'
+import Toast from "../components/Toast";
+import useEmail from "../hooks/useEmail";
+import { audit } from "../helper/worker";
+import "./Files.css";
 
 export default function Files() {
-  const [type, setType] = useState(0)
-  const [files, setFiles] = useState([])
+  const { token } = useSelector((state) => state.account);
+  const { email } = useEmail(token);
+  const [type, setType] = useState(0);
+  const [files, setFiles] = useState([]);
 
   const downloadFile = async (url) => {
-    window.open(url, '_blank')
-  }
+    window.open(url, "_blank");
+  };
 
   const getAll = async () => {
     try {
       const list = query(
-        collection(db, 'files'),
-        where('isDeleted', '==', false),
-      )
-      const querySnapshot = await getDocs(list)
-      let datas = []
+        collection(db, "files"),
+        where("isDeleted", "==", false)
+      );
+      const querySnapshot = await getDocs(list);
+      let datas = [];
       querySnapshot.forEach((item) =>
-        datas.push({ id: item.id, name: item.data().filename }),
-      )
+        datas.push({ id: item.id, name: item.data().filename })
+      );
 
-      const listRef = ref(storage)
-      const resList = await listAll(listRef)
-      let items = []
+      const listRef = ref(storage);
+      const resList = await listAll(listRef);
+      let items = [];
 
       await Promise.all(
         resList.items.map(async (item) => {
-          console.log(item)
-          const { name } = item
+          console.log(item);
+          const { name } = item;
           if (datas.some((data) => data.name === name)) {
-            const url = await getDownloadURL(item)
-            const meta = await getMetadata(item)
+            const url = await getDownloadURL(item);
+            const meta = await getMetadata(item);
             items.push({
               id: meta.generation,
               name: name,
@@ -49,75 +54,143 @@ export default function Files() {
               size: meta.size,
               type: meta.contentType,
               lastUpdated: meta.updated,
-            })
+            });
           }
-        }),
-      )
-      return items
+        })
+      );
+      return items;
     } catch (err) {
-      const error = translationFirebaseErrorsEN(err.code)
-      toast(error, { type: 'error' })
+      const error = translationFirebaseErrorsEN(err.code);
+      toast(error, { type: "error" });
     }
-  }
+  };
   const getAllImage = async () => {
     try {
-      const files = await getAll()
-      const filtered = files.filter((file) => file['type'].includes('image'))
-      setFiles(filtered)
-      setType(1)
+      const files = await getAll();
+      const filtered = files.filter((file) => file["type"].includes("image"));
+      setFiles(filtered);
+      setType(1);
+
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Images on Files",
+        priority: "Low",
+        status: "Success",
+      });
     } catch (err) {
-      const error = translationFirebaseErrorsEN(err.code)
-      toast(error, { type: 'error' })
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Images on Files",
+        priority: "Low",
+        status: "Failed",
+      });
+      const error = translationFirebaseErrorsEN(err.code);
+      toast(error, { type: "error" });
     }
-  }
+  };
 
   const getAllVideos = async () => {
     try {
-      const files = await getAll()
-      const filtered = files.filter((file) => file['type'].includes('video'))
-      setFiles(filtered)
-      setType(2)
+      const files = await getAll();
+      const filtered = files.filter((file) => file["type"].includes("video"));
+      setFiles(filtered);
+      setType(2);
+
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Videos on Files",
+        priority: "Low",
+        status: "Success",
+      });
     } catch (err) {
-      const error = translationFirebaseErrorsEN(err.code)
-      toast(error, { type: 'error' })
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Videos on Files",
+        priority: "Low",
+        status: "Failed",
+      });
+      const error = translationFirebaseErrorsEN(err.code);
+      toast(error, { type: "error" });
     }
-  }
+  };
 
   const getAllAudio = async () => {
     try {
-      const files = await getAll()
-      const filtered = files.filter((file) => file['type'].includes('audio'))
-      setFiles(filtered)
-      setType(3)
+      const files = await getAll();
+      const filtered = files.filter((file) => file["type"].includes("audio"));
+      setFiles(filtered);
+      setType(3);
+
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Images on Files",
+        priority: "Low",
+        status: "Success",
+      });
     } catch (err) {
-      const error = translationFirebaseErrorsEN(err.code)
-      toast(error, { type: 'error' })
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Images on Files",
+        priority: "Low",
+        status: "Failed",
+      });
+      const error = translationFirebaseErrorsEN(err.code);
+      toast(error, { type: "error" });
     }
-  }
+  };
 
   const getAllDocuments = async () => {
     try {
-      const files = await getAll()
+      const files = await getAll();
       const filtered = files.filter((file) =>
-        file['type'].includes('application'),
-      )
-      setFiles(filtered)
-      setType(4)
+        file["type"].includes("application")
+      );
+      setFiles(filtered);
+      setType(4);
+
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Documents on Files",
+        priority: "Low",
+        status: "Success",
+      });
     } catch (err) {
-      const error = translationFirebaseErrorsEN(err.code)
-      toast(error, { type: 'error' })
+      await audit({
+        user: email,
+        activity: "Viewing",
+        date: Date.now(),
+        description: "Viewing Documents on Files",
+        priority: "Low",
+        status: "Failed",
+      });
+      const error = translationFirebaseErrorsEN(err.code);
+      toast(error, { type: "error" });
     }
-  }
+  };
 
   return (
     <>
-      <div style={{ position: 'absolute' }}>
+      <div style={{ position: "absolute" }}>
         <p
           style={{
-            fontFamily: 'Roboto',
-            fontSize: '20px',
+            fontFamily: "Roboto",
+            fontSize: "20px",
             fontWeight: 700,
-            color: '#1565c0',
+            color: "#1565c0",
           }}
         >
           Files
@@ -125,11 +198,11 @@ export default function Files() {
       </div>
       <div
         style={{
-          height: '60vh',
-          width: '70vw',
+          height: "60vh",
+          width: "70vw",
         }}
       >
-        <div style={{ transform: 'translate(5em, 3em)' }}>
+        <div style={{ transform: "translate(5em, 3em)" }}>
           <ButtonGroup
             variant="contained"
             aria-label="outlined primary button group"
@@ -141,10 +214,10 @@ export default function Files() {
             <Button onClick={getAllVideos}>Videos</Button>
           </ButtonGroup>
         </div>
-        <div style={{ transform: 'translate(5em, 5em)' }}>
+        <div style={{ transform: "translate(5em, 5em)" }}>
           {files.length === 0 ? (
             <>
-              <Result title="No File Found!" style={{ marginTop: '15vh' }} />
+              <Result title="No File Found!" style={{ marginTop: "15vh" }} />
             </>
           ) : type === 1 ? (
             <>
@@ -158,16 +231,16 @@ export default function Files() {
                           style={{
                             width: 200,
                             height: 170,
-                            textAlign: 'center',
+                            textAlign: "center",
                           }}
                           hoverable
                           cover={
                             <Image
                               alt={f.name}
                               style={{
-                                height: 'auto',
+                                height: "auto",
                                 maxHeight: 100,
-                                width: 'auto',
+                                width: "auto",
                                 maxWidth: 100,
                               }}
                               src={f.url}
@@ -181,18 +254,28 @@ export default function Files() {
                             size="small"
                             style={{
                               marginTop: 20,
-                              width: '80%',
-                              position: 'absolute',
-                              left: '20px',
-                              bottom: '10px',
+                              width: "80%",
+                              position: "absolute",
+                              left: "20px",
+                              bottom: "10px",
                             }}
-                            onClick={() => downloadFile(f.url)}
+                            onClick={async () => {
+                              downloadFile(f.url);
+                              await audit({
+                                user: email,
+                                activity: "Download",
+                                date: Date.now(),
+                                description: `Downloaded ${f.name}`,
+                                priority: "Medium",
+                                status: "Success",
+                              });
+                            }}
                           >
                             Download
                           </Button>
                         </Card>
                       </Tooltip>
-                    )
+                    );
                   })}
                 </Image.PreviewGroup>
               </div>
@@ -202,10 +285,10 @@ export default function Files() {
               <h4
                 className="header-text"
                 style={{
-                  fontFamily: 'Roboto',
-                  fontSize: '15px',
+                  fontFamily: "Roboto",
+                  fontSize: "15px",
                   fontWeight: 700,
-                  color: '#1565c0',
+                  color: "#1565c0",
                 }}
               >
                 Videos
@@ -219,17 +302,17 @@ export default function Files() {
                           style={{
                             width: 200,
                             height: 200,
-                            textAlign: 'center',
+                            textAlign: "center",
                           }}
                           hoverable
                           cover={
                             <video
                               style={{
-                                height: 'auto',
+                                height: "auto",
                                 maxHeight: 100,
-                                width: 'auto',
+                                width: "auto",
                                 maxWidth: 200,
-                                marginLeft: '5%',
+                                marginLeft: "5%",
                               }}
                               controls
                             >
@@ -240,7 +323,7 @@ export default function Files() {
                           <Card.Meta title={f.name} />
                         </Card>
                       </Tooltip>
-                    )
+                    );
                   })}
                 </Image.PreviewGroup>
               </div>
@@ -250,10 +333,10 @@ export default function Files() {
               <h4
                 className="header-text"
                 style={{
-                  fontFamily: 'Roboto',
-                  fontSize: '15px',
+                  fontFamily: "Roboto",
+                  fontSize: "15px",
                   fontWeight: 700,
-                  color: '#1565c0',
+                  color: "#1565c0",
                 }}
               >
                 Audios
@@ -267,15 +350,15 @@ export default function Files() {
                           style={{
                             width: 200,
                             height: 200,
-                            textAlign: 'center',
+                            textAlign: "center",
                           }}
                           hoverable
                           cover={
                             <video
                               style={{
-                                height: 'auto',
+                                height: "auto",
                                 maxHeight: 100,
-                                width: 'auto',
+                                width: "auto",
                                 maxWidth: 200,
                               }}
                               controls
@@ -287,7 +370,7 @@ export default function Files() {
                           <Card.Meta title={f.name} />
                         </Card>
                       </Tooltip>
-                    )
+                    );
                   })}
                 </Image.PreviewGroup>
               </div>
@@ -297,10 +380,10 @@ export default function Files() {
               <h4
                 className="header-text"
                 style={{
-                  fontFamily: 'Roboto',
-                  fontSize: '15px',
+                  fontFamily: "Roboto",
+                  fontSize: "15px",
                   fontWeight: 700,
-                  color: '#1565c0',
+                  color: "#1565c0",
                 }}
               >
                 Documents
@@ -313,18 +396,18 @@ export default function Files() {
                         style={{
                           width: 200,
                           height: 170,
-                          textAlign: 'center',
+                          textAlign: "center",
                         }}
                         hoverable
                         cover={
                           <img
                             alt={f.name}
                             style={{
-                              height: 'auto',
+                              height: "auto",
                               maxHeight: 80,
-                              width: 'auto',
+                              width: "auto",
                               maxWidth: 80,
-                              marginLeft: '34%',
+                              marginLeft: "34%",
                             }}
                             src="/images/file-icon.png"
                           />
@@ -337,10 +420,10 @@ export default function Files() {
                           size="small"
                           style={{
                             marginTop: 20,
-                            width: '80%',
-                            position: 'absolute',
-                            left: '20px',
-                            bottom: '10px',
+                            width: "80%",
+                            position: "absolute",
+                            left: "20px",
+                            bottom: "10px",
                           }}
                           onClick={() => downloadFile(f.url)}
                         >
@@ -348,7 +431,7 @@ export default function Files() {
                         </Button>
                       </Card>
                     </Tooltip>
-                  )
+                  );
                 })}
               </div>
             </>
@@ -361,5 +444,5 @@ export default function Files() {
       </div>
       <Toast />
     </>
-  )
+  );
 }
