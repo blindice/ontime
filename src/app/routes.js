@@ -1,16 +1,17 @@
-import * as React from 'react'
-import { useRoutes } from 'react-router-dom'
+import * as React from "react";
+import { useRoutes } from "react-router-dom";
 
-import DashBoard from '../pages/DashBoard'
-import Files from '../pages/Files'
-import LoginPage from '../pages/LoginPage'
-import MainPage from '../pages/MainPage'
-import Upload from '../pages/Upload'
-import Trash from '../pages/Trash'
-import FrontPage from '../pages/FrontPage'
-import HomePage from '../pages/HomePage'
-import AboutPage from '../pages/AboutPage'
-import InfoPage from '../pages/InfoPage'
+import DashBoard from "../pages/DashBoard";
+import Files from "../pages/Files";
+import LoginPage from "../pages/LoginPage";
+import MainPage from "../pages/MainPage";
+import Upload from "../pages/Upload";
+import Trash from "../pages/Trash";
+import FrontPage from "../pages/FrontPage";
+import HomePage from "../pages/HomePage";
+import AboutPage from "../pages/AboutPage";
+import InfoPage from "../pages/InfoPage";
+import Audit from "../pages/Audit";
 
 export default function Routes() {
   let element = useRoutes([
@@ -18,19 +19,19 @@ export default function Routes() {
       element: <FrontPage />,
       children: [
         {
-          path: '/',
+          path: "/",
           element: <HomePage />,
         },
         {
-          path: '/about',
+          path: "/about",
           element: <AboutPage />,
         },
         {
-          path: '/info',
+          path: "/info",
           element: <InfoPage />,
         },
         {
-          path: '/login',
+          path: "/login",
           element: <LoginPage />,
         },
       ],
@@ -39,24 +40,28 @@ export default function Routes() {
       element: <MainPage />,
       children: [
         {
-          path: '/dashboard',
+          path: "/dashboard",
           element: <DashBoard />,
         },
         {
-          path: '/files',
+          path: "/files",
           element: <Files />,
         },
         {
-          path: '/upload',
+          path: "/upload",
           element: <Upload />,
         },
         {
-          path: '/trash',
+          path: "/trash",
           element: <Trash />,
+        },
+        {
+          path: "/audit",
+          element: <Audit />,
         },
       ],
     },
-  ])
+  ]);
 
-  return element
+  return element;
 }

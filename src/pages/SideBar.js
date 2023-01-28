@@ -1,35 +1,36 @@
-import { Sidebar, Menu, MenuItem, sidebarClasses } from 'react-pro-sidebar'
-import { Link } from 'react-router-dom'
-import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded'
-import AttachFileRoundedIcon from '@mui/icons-material/AttachFileRounded'
-import CloudUploadRoundedIcon from '@mui/icons-material/CloudUploadRounded'
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
-import { Box } from '@mui/material'
+import { Sidebar, Menu, MenuItem, sidebarClasses } from "react-pro-sidebar";
+import { Link } from "react-router-dom";
+import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
+import AttachFileRoundedIcon from "@mui/icons-material/AttachFileRounded";
+import CloudUploadRoundedIcon from "@mui/icons-material/CloudUploadRounded";
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import BrightnessAutoRoundedIcon from "@mui/icons-material/BrightnessAutoRounded";
+import { Box } from "@mui/material";
 
-import useRole from '../hooks/useRole'
+import useRole from "../hooks/useRole";
 
 export default function SideBar() {
-  const { isAdmin } = useRole()
+  const { isAdmin } = useRole();
 
   return (
     <>
       <Sidebar
         rootStyles={{
           [`.${sidebarClasses.container}`]: {
-            height: '100vh',
-            backgroundColor: 'white',
-            boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+            height: "100vh",
+            backgroundColor: "white",
+            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           },
         }}
       >
-        <div style={{ marginBottom: '10em', fontFamily: 'Work Sans' }}>
+        <div style={{ marginBottom: "10em", fontFamily: "Work Sans" }}>
           <span>
             <img
               alt="logo"
               src="/images/upbox-icon.png"
               style={{
-                height: '6em',
-                transform: 'translate(4.5em, 1em)',
+                height: "6em",
+                transform: "translate(4.5em, 1em)",
               }}
             ></img>
             {/* <p
@@ -47,16 +48,16 @@ export default function SideBar() {
             button: ({ level, active, disabled }) => {
               if (level === 0)
                 return {
-                  color: disabled ? 'black' : '#1565c0',
-                  backgroundColor: active ? 'black' : undefined,
-                  fontFamily: 'Work Sans',
+                  color: disabled ? "black" : "#1565c0",
+                  backgroundColor: active ? "black" : undefined,
+                  fontFamily: "Work Sans",
                   fontWeight: 700,
-                  fontSize: '14px',
-                  ':hover': {
-                    backgroundColor: '#1565c0',
-                    color: 'white',
+                  fontSize: "14px",
+                  ":hover": {
+                    backgroundColor: "#1565c0",
+                    color: "white",
                   },
-                }
+                };
             },
           }}
         >
@@ -64,26 +65,26 @@ export default function SideBar() {
             routerLink={<Link to="/dashboard" />}
             prefix={<DashboardRoundedIcon />}
           >
-            {' '}
+            {" "}
             DASHBOARD
           </MenuItem>
           <MenuItem
             routerLink={<Link to="/files" />}
             prefix={<AttachFileRoundedIcon />}
           >
-            {' '}
+            {" "}
             FILES
           </MenuItem>
-          <Box display={!isAdmin && { sm: 'none' }}>
+          <Box display={!isAdmin && { sm: "none" }}>
             <MenuItem
               routerLink={<Link to="/upload" />}
               prefix={<CloudUploadRoundedIcon />}
             >
-              {' '}
+              {" "}
               UPLOAD
             </MenuItem>
           </Box>
-          <Box display={!isAdmin && { sm: 'none' }}>
+          <Box display={!isAdmin && { sm: "none" }}>
             <MenuItem
               routerLink={<Link to="/trash" />}
               prefix={<DeleteRoundedIcon />}
@@ -91,8 +92,17 @@ export default function SideBar() {
               TRASH
             </MenuItem>
           </Box>
+          <Box display={!isAdmin && { sm: "none" }}>
+            <MenuItem
+              routerLink={<Link to="/audit" />}
+              prefix={<BrightnessAutoRoundedIcon />}
+            >
+              {" "}
+              Audit Trace
+            </MenuItem>
+          </Box>
         </Menu>
       </Sidebar>
     </>
-  )
+  );
 }
