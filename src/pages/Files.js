@@ -13,6 +13,7 @@ import Toast from "../components/Toast";
 import useEmail from "../hooks/useEmail";
 import { audit } from "../helper/worker";
 import "./Files.css";
+import { async } from "@firebase/util";
 
 export default function Files() {
   const { token } = useSelector((state) => state.account);
@@ -21,15 +22,24 @@ export default function Files() {
   const [files, setFiles] = useState([]);
 
   const downloadFile = async (url, name) => {
-    console.log(name);
-    window.open(url, "_blank");
-    await audit({
-      user: email,
-      activity: "Download",
-      description: `Downloaded ${name}`,
-      priority: "Medium",
-      status: "Success",
-    });
+    try {
+      window.open(url, "_blank");
+      await audit({
+        user: email,
+        activity: "Download",
+        description: `Downloaded ${name}`,
+        priority: "Medium",
+        status: "Success",
+      });
+    } catch (err) {
+      await audit({
+        user: email,
+        activity: "Download",
+        description: `Downloaded ${name}`,
+        priority: "Medium",
+        status: "Failed",
+      });
+    }
   };
 
   const getAll = async () => {
@@ -244,6 +254,15 @@ export default function Files() {
                                 maxWidth: 100,
                               }}
                               src={f.url}
+                              onClick={async () => {
+                                await audit({
+                                  user: email,
+                                  activity: "Viewing",
+                                  description: `Viewed photo ${f.name}`,
+                                  priority: "Low",
+                                  status: "Success",
+                                });
+                              }}
                             />
                           }
                         >
@@ -309,6 +328,15 @@ export default function Files() {
                               }}
                               controls
                               controlsList="nodownload"
+                              onPlay={async () => {
+                                await audit({
+                                  user: email,
+                                  activity: "Watching",
+                                  description: `Watched to video ${f.name}`,
+                                  priority: "Low",
+                                  status: "Success",
+                                });
+                              }}
                             >
                               <source src={f.url} />
                             </video>
@@ -372,6 +400,15 @@ export default function Files() {
                               }}
                               controls
                               controlsList="nodownload"
+                              onPlay={async () => {
+                                await audit({
+                                  user: email,
+                                  activity: "Listening",
+                                  description: `Listened to audio ${f.name}`,
+                                  priority: "Low",
+                                  status: "Success",
+                                });
+                              }}
                             >
                               <source src={f.url} />
                             </video>
