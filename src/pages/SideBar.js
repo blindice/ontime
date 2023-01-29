@@ -73,7 +73,7 @@ export default function SideBar() {
               await audit({
                 user: email,
                 activity: "Viewing",
-                description: "Viewing DashBoard",
+                description: "Viewed on DashBoard",
                 priority: "Low",
                 status: "Success",
               });
@@ -106,7 +106,7 @@ export default function SideBar() {
                 await audit({
                   user: email,
                   activity: "Viewing",
-                  description: "Viewing on Trash",
+                  description: "Viewed on Trash",
                   priority: "Low",
                   status: "Success",
                 });
@@ -121,7 +121,7 @@ export default function SideBar() {
               prefix={<BrightnessAutoRoundedIcon />}
             >
               {" "}
-              Audit Trace
+              AUDIT TRACE
             </MenuItem>
           </Box>
         </Menu>

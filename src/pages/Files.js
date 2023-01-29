@@ -23,7 +23,20 @@ export default function Files() {
 
   const downloadFile = async (url, name) => {
     try {
-      window.open(url, "_blank");
+      const xhr = new XMLHttpRequest();
+      xhr.responseType = "blob";
+      xhr.onload = (event) => {
+        const blob = xhr.response;
+        var csvURL = window.URL.createObjectURL(blob);
+        let tempLink = document.createElement("a");
+        tempLink.href = csvURL;
+        tempLink.setAttribute("download", name);
+        tempLink.click();
+      };
+      xhr.open("GET", url);
+      xhr.send();
+
+      // window.open(url, "_blank", "popup");
       await audit({
         user: email,
         activity: "Download",
@@ -279,7 +292,6 @@ export default function Files() {
                               bottom: "10px",
                             }}
                             onClick={async () => {
-                              console.log(f.name);
                               downloadFile(f.url, f.name);
                             }}
                           >

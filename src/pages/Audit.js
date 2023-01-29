@@ -15,7 +15,7 @@ export default function Audit() {
     try {
       setLoading(true);
 
-      const list = query(collection(db, "audit"), orderBy("date", "desc"));
+      const list = query(collection(db, "audit"));
 
       const querySnapshot = await getDocs(list);
       let datas = [];
@@ -30,6 +30,10 @@ export default function Audit() {
           status: item.data().status,
         })
       );
+
+      datas.sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+      });
 
       setFiles(datas);
       setLoading(false);
@@ -50,7 +54,7 @@ export default function Audit() {
       field: "date",
       headerName: "Date",
       flex: 1,
-      minWidth: 150,
+      minWidth: 300,
       headerClassName: "super-app-theme--header",
     },
     {
