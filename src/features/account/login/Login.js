@@ -1,39 +1,59 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { TextField } from '@mui/material'
-import LoadingButton from '@mui/lab/LoadingButton'
-import { useForm, Controller } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
-import { toast } from 'react-toastify'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { TextField } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { useForm, Controller } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
-import { loginAsync } from '../accountSlice'
-import { login as style } from './style'
-import Toast from '../../../components/Toast'
+import { loginAsync } from "../accountSlice";
+import { login as style } from "./style";
+import useEmail from "../../../hooks/useEmail";
+import { audit } from "../../../helper/worker";
+import Toast from "../../../components/Toast";
 
 export default function Login() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const isLoading = useSelector((state) => state.account.isLoading)
+  const { token } = useSelector((state) => state.account);
+  const { email } = useEmail(token);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.account.isLoading);
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     },
-  })
+  });
 
   const handleLogin = async (data) => {
     try {
-      await dispatch(loginAsync(data)).unwrap()
-      navigate('/dashboard')
+      await dispatch(loginAsync(data)).unwrap();
+      await audit({
+        user: email,
+        activity: "Login",
+        date: Date.now(),
+        description: "Login",
+        priority: "High",
+        status: "Success",
+      });
+      navigate("/dashboard");
     } catch (err) {
-      toast(err, { type: 'error' })
+      await audit({
+        user: email,
+        activity: "Login",
+        date: Date.now(),
+        description: "Login",
+        priority: "HIgh",
+        status: "Failed",
+      });
+      toast(err, { type: "error" });
     }
-  }
+  };
 
   return (
     <div>
@@ -43,7 +63,7 @@ export default function Login() {
             alt="white-logo"
             src="/images/upbox_white.png"
             style={{
-              height: '1.5em',
+              height: "1.5em",
             }}
           />
           UpBox
@@ -86,5 +106,5 @@ export default function Login() {
       </form>
       <Toast />
     </div>
-  )
+  );
 }
