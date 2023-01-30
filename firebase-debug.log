@@ -1,0 +1,237 @@
+[debug] [2023-01-30T22:50:10.102Z] ----------------------------------------------------------------------
+[debug] [2023-01-30T22:50:10.104Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2023-01-30T22:50:10.105Z] CLI Version:   11.17.0
+[debug] [2023-01-30T22:50:10.105Z] Platform:      win32
+[debug] [2023-01-30T22:50:10.105Z] Node Version:  v16.17.0
+[debug] [2023-01-30T22:50:10.111Z] Time:          Tue Jan 31 2023 06:50:10 GMT+0800 (Taipei Standard Time)
+[debug] [2023-01-30T22:50:10.111Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-30T22:50:10.116Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] Already logged in as blindice1@gmail.com
+[debug] [2023-01-30T22:50:11.104Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-01-30T22:50:11.104Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-01-30T22:50:20.235Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:253:49)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-01-30T22:50:32.809Z] ----------------------------------------------------------------------
+[debug] [2023-01-30T22:50:32.811Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-01-30T22:50:32.811Z] CLI Version:   11.17.0
+[debug] [2023-01-30T22:50:32.811Z] Platform:      win32
+[debug] [2023-01-30T22:50:32.812Z] Node Version:  v16.17.0
+[debug] [2023-01-30T22:50:32.813Z] Time:          Tue Jan 31 2023 06:50:32 GMT+0800 (Taipei Standard Time)
+[debug] [2023-01-30T22:50:32.813Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-30T22:50:32.877Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-30T22:50:32.877Z] > authorizing via signed-in user (blindice1@gmail.com)
+[debug] [2023-01-30T22:50:32.877Z] [iam] checking project bthesis-afda4 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-01-30T22:50:32.879Z] > refreshing access token with scopes: []
+[debug] [2023-01-30T22:50:32.882Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-30T22:50:32.882Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-30T22:50:33.634Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-01-30T22:50:33.634Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-30T22:50:33.653Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bthesis-afda4:testIamPermissions [none]
+[debug] [2023-01-30T22:50:33.653Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bthesis-afda4:testIamPermissions x-goog-quota-user=projects/bthesis-afda4
+[debug] [2023-01-30T22:50:33.653Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bthesis-afda4:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-30T22:50:34.929Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bthesis-afda4:testIamPermissions 200
+[debug] [2023-01-30T22:50:34.929Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bthesis-afda4:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-30T22:50:34.930Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bthesis-afda4 [none]
+[debug] [2023-01-30T22:50:35.836Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bthesis-afda4 200
+[debug] [2023-01-30T22:50:35.836Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bthesis-afda4 {"projectId":"bthesis-afda4","projectNumber":"474733194984","displayName":"BThesis","name":"projects/bthesis-afda4","resources":{"hostingSite":"bthesis-afda4","storageBucket":"bthesis-afda4.appspot.com","locationId":"asia-southeast1"},"state":"ACTIVE","etag":"1_9cce8923-2fd9-4edc-96e2-be358478b4de"}
+[info] 
+[info] === Deploying to 'bthesis-afda4'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2023-01-30T22:50:35.843Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions [none]
+[debug] [2023-01-30T22:50:35.843Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-01-30T22:50:37.598Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions 200
+[debug] [2023-01-30T22:50:37.599Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions {"name":"projects/474733194984/sites/bthesis-afda4/versions/0e28ea5d5d101210","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[bthesis-afda4]: beginning deploy... 
+[info] i  hosting[bthesis-afda4]: found 60 files in build 
+[debug] [2023-01-30T22:50:57.050Z] [hosting] uploading with 200 concurrency
+[debug] [2023-01-30T22:50:57.967Z] [hosting] hash cache [YnVpbGQ] stored for 60 files
+[debug] [2023-01-30T22:50:57.967Z] [hosting][hash queue][FINAL] {"max":903,"min":17,"avg":48.88333333333333,"active":0,"complete":60,"success":60,"errored":0,"retried":0,"total":60,"elapsed":913}
+[debug] [2023-01-30T22:50:57.969Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/474733194984/sites/bthesis-afda4/versions/0e28ea5d5d101210:populateFiles [none]
+[debug] [2023-01-30T22:50:57.969Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/474733194984/sites/bthesis-afda4/versions/0e28ea5d5d101210:populateFiles {"files":{"/index.html":"6515649c37e81506c651572dc683551adfcfe8e02c94655696efc5da746631bb","/asset-manifest.json":"6e59a0e15f7e5231b65815ca5d2ed5641fa25db9a321e9c2e2beaea9f60d58de","/manifest.json":"aff3449bdc238776f5d6d967f19ec491b36aed5fb7f23ccff6500736fd58494a","/logo192.png":"ebf380e341383bbf65d6a762603f630a9f7610c97f32bd297bc097635bc37ee3","/robots.txt":"5fcd5c559ded0c02b3ed7840ca3ee77e95b798730af98d9f18bc627ac898071e","/favicon.ico":"87aecafb41d21ea93b7af81398237b980c43ee880676c78630ee2d1e9a6d711f","/images/file-icon.png":"6cc289114b3f41195d92044cafe84d9fb8399424bea8b76e41b7b70c430b705c","/logo512.png":"c55d034d9cf7abfac7600919cbf4f4ce2f3ea3478df91d01177e8ff136f58918","/images/doc.png":"8bbb0922e3d869b0bc3f5b3dda516474e1d35b9b4a0914cea221435253f41318","/images/csv.png":"1b4c1d8fb4fee9fde33ffe756cb5ee76ee4a7c10f6cf8383dcafd720e5562439","/images/html.png":"ed07b50deda40b6d4cf7a754ce61ec3a80b7b9c729ea4b3d15c50e932264570e","/images/txt.png":"9d6bbaf7824602a735b6afb117f73ff8264d258116e0c074861f48e21b6befb8","/images/ppt.png":"bf5281c2a41700101050ee9fa7693bfbe32914e4d19f9725a1b1ad831e2bc42b","/images/pdf.png":"72182266c9095dfaf9d4af8a04756b094ef8a3e3110dfe5cd79c87e6a2df93e9","/images/xls.png":"8ec6a20f91cb94a0ea1d87146f25423e5fb1cf095ee1b9d8f7bfbf1657404b6e","/static/js/787.670ba97f.chunk.js":"f88925a2a09aa6d09e7a606a06015b990ba51c2cabf3c69c93c4c4fadb67bb87","/static/js/main.181e535c.js.LICENSE.txt":"951814c7e1125dd9cdcd402ae415760c2a08721e99319d56e11aa801f051cd59","/static/js/787.670ba97f.chunk.js.map":"3c16cf668e0db9fc637541083845ad28d1492f3941d9a984beb802cd59459230","/static/css/main.574db58b.css":"de820182002fb9c309b11b8ebc48a227c58e743e2750ed9686ec9405e8300a81","/static/css/main.574db58b.css.map":"572c84928d5fe797a36fae2edc4ebac8d5976d49bc82792fbd3dea7d9194859c","/static/media/roboto-cyrillic-400-normal.71a33b6b50457b2c903a.woff2":"7b0fa1eec6852044a856e1c7ae33aa6e3db2916a05080be368fbe2fc2aaeb34e","/static/media/roboto-cyrillic-300-normal.1431d1cef06ad04f5458.woff2":"7a18c7738e3ee51c35457fab46849c9dd23ede38deeda4c8a1f0486b445026fe","/static/media/roboto-cyrillic-500-normal.cad7d3d9cb265e334e58.woff2":"ef87b441158ea715ef732cb7ef9e181ef3cc576dad81250e7eda0111c32e1c3d","/static/media/roboto-cyrillic-700-normal.d010f1f324e111a22e53.woff2":"65c6fa99ec79366b59543a4127be443c670c9042e5937082e6dbda34c0fcad19","/static/media/roboto-cyrillic-ext-300-normal.4777461b144e55145268.woff2":"31baa9e9c45f2de6aae0e8b3a750afb432fad261c982d0f27c103c4ca30ffe38","/static/media/roboto-cyrillic-ext-700-normal.be4d02458ce53887dc37.woff2":"22fcde50e80e27fcb70358106ae20e70d55a6976436a29f7e81d91f8dddead91","/static/media/roboto-greek-300-normal.db2632771401f61463fe.woff2":"3998a7853436ec165d6d021632bbf756d7f109d3e5dd14a56cc57ccadb39f455","/static/media/roboto-cyrillic-ext-500-normal.62ced72e5832f02c2796.woff2":"990c22e932984780d4c2a52fac7ff537f0b4fb4e4ff3a6931b986ad65e94963d","/static/media/roboto-cyrillic-ext-400-normal.804378952da8a10faae2.woff2":"d370340df84be45fad28859559e5bd3531cbf6c3873ca6bba200aabda9f44cb6","/static/media/roboto-greek-ext-300-normal.35b9d6be04b95f0f0530.woff2":"795dddfc80123d4b2d4b1e9b11ad7a07076bcffdede8d539a6784335423f0478","/static/media/roboto-greek-400-normal.c35e4c3958e209d17b31.woff2":"a9fa660ff3ebb4698597476d9ca5a6a24340b3e4e0cf9e6704510912d25d2647","/static/media/roboto-greek-500-normal.9ac81fefbe6c319ea40b.woff2":"a6822425ab5737bbaa54ab2e57305b223d6eaec89e7fa09d5549cb5c127f1485","/static/media/roboto-greek-ext-400-normal.169619821ea93019d1bb.woff2":"ba8d976054fcda8593f3d66c47505c9304e5a2f34471937fc99dbc792b4c41e7","/static/media/roboto-greek-700-normal.50e795c1345353b0e996.woff2":"5309d7e9b9fc472459aa9fd4e7a489791efa847ea0e0b8a28c7fedf708226468","/static/media/roboto-greek-ext-500-normal.6fb9cffb1d3e72bf9293.woff2":"c15cfee67d025043a6f6d0350eac166074d471f84a20b05c2cfa24c38a850b0e","/static/media/roboto-greek-ext-700-normal.bd9854c751441ccc1a70.woff2":"8e5c05f0bebeb2b1f9ac9a4f0a727349991474e29c3214587a402b07b8ba6817","/static/media/roboto-latin-300-normal.c48fb6765a9fcb00b330.woff2":"1257a1f7d6d4cf0017f914b20a89377caf5c0ff9d31a005eadcc18181db9be3d","/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2":"c5c35e4f7eb9ad6aa543faad4550e57362bfd7ad88f9df6f3f7f4fb1ea808cd3","/images/upbox_white.png":"d4f526beabb7231b6639e27b5a9618b41aaed7a44557a1534188d58180d406a9","/images/upbox-icon.png":"669cac6409145a27e54df05b06200a76c0be2abab84b0d7ab02ff88e50697d4a","/static/media/roboto-all-300-normal.168d6383e73339293ac3.woff":"cad261f11c78ce1fafa57fc9d935f030e1bc3209fa6e7dc488db5f7e5e12e314","/static/media/roboto-all-400-normal.c5d001fa922fa66a147f.woff":"a6b077da001d36889c5a88d7349d2014a7bbad639249359fd76d29de49b18cc8","/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2":"a779f5f1144e9c9efeda4a4141d7a4050e386ab4259aeadea4dff48f67c23362","/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2":"f2cc892b949b456ba07184673306af281b0fe37998ceb8c7adfa074a8905c9c4","/static/media/roboto-latin-ext-300-normal.dc7dcec8e3f654e0ed63.woff2":"548ef6ca84f2e65e5cd04157702596604430cbdd3d5257d51e88d106e5480656","/static/media/roboto-latin-ext-400-normal.861b791f9de857a6e7bc.woff2":"6fe807b7e1c944c0c220cccf918c7ef7d79437e1266ca8986026cdbcbd04fabe","/static/media/roboto-latin-ext-500-normal.9165081d10e1ba601384.woff2":"16aa9f4b2ad3221f370aec4a42745d0575922ed73f5137e6b3720e3fb7abdfd2","/static/media/roboto-latin-ext-700-normal.ed67ad54b1a8f5d21150.woff2":"af012fee08087d597c634fe45ae3090a18c6fb72bff64656fe2b51243e008d58","/static/media/roboto-vietnamese-400-normal.3230f9b040f3c630e0c3.woff2":"054d6875432132790a834b4e81b5180ab51d42f60360d36398b8657fa466726c","/static/media/roboto-vietnamese-300-normal.32fc45a3d1e8ea11fabc.woff2":"b89075183f5b199e65e18d02a0d686671009d76aea2d9c14e97785a145f987b3","/static/media/roboto-vietnamese-700-normal.3425a701027d0699e369.woff2":"a1a95a8406c3d1b18a0cd24ff3fd7369f79bea51ace99d462d5daccc9465af00","/static/media/roboto-vietnamese-500-normal.d8642a3d1d4ef6179644.woff2":"8a243fed3a3523b36b5f225bf9da52785422d645dcd4f5c812fd26b105d3a0ee","/static/media/roboto-all-500-normal.0ab669b7a0d19b178f57.woff":"7bda2221f5ec69b4bb96ae92ec7fc5456cc4c92a2804cd94720add5f7b42d84f","/static/media/roboto-all-700-normal.a457fde362a540fcadff.woff":"cff0c9f57b3c8a7fd9d91c1faf05f1ae53ccc15098828d670148103c942ce889","/images/upbox-logo.png":"ea5a95dcc0fc3db51f48c30defe6e9fdbbd3fab24a4e8e6d60abd306899a3c9a","/images/cloud-logo.png":"6964ba7bea5ef56f3358405bded22aeaa50712d7b994ddaf9ac33bb25b752756","/images/PngItem_5131515.png":"c3438c45fb3675091fa1e81eac6ae1d3f8b622df6f119553bc811e597b996de3","/static/media/PngItem_5131515.8df16d12a47f2c1aba79.png":"c3438c45fb3675091fa1e81eac6ae1d3f8b622df6f119553bc811e597b996de3","/static/js/main.181e535c.js":"cf42f3a55a8267e0beb4cda3af56e9d40895caf641b2d92e961115ed44b439a6","/static/js/main.181e535c.js.map":"9deb11c33c3edfbeef83f4ee06fde9adc684f74f396b451bb1ef6c88b0c597aa"}}
+[debug] [2023-01-30T22:50:59.380Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/474733194984/sites/bthesis-afda4/versions/0e28ea5d5d101210:populateFiles 200
+[debug] [2023-01-30T22:50:59.380Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/474733194984/sites/bthesis-afda4/versions/0e28ea5d5d101210:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/0e28ea5d5d101210/files"}
+[debug] [2023-01-30T22:50:59.380Z] [hosting][populate queue][FINAL] {"max":1415,"min":1415,"avg":1415,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1415}
+[debug] [2023-01-30T22:50:59.380Z] [hosting] uploads queued: 0
+[debug] [2023-01-30T22:50:59.380Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1675119059380}
+[info] +  hosting[bthesis-afda4]: file upload complete 
+[debug] [2023-01-30T22:50:59.381Z] [hosting] deploy completed after 2364ms
+[debug] [2023-01-30T22:50:59.384Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**/*.@(jpg|jpeg|gif|png)",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        }
+      ],
+      "site": "bthesis-afda4"
+    },
+    "version": "projects/474733194984/sites/bthesis-afda4/versions/0e28ea5d5d101210"
+  }
+]
+[info] i  hosting[bthesis-afda4]: finalizing version... 
+[debug] [2023-01-30T22:50:59.387Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions/0e28ea5d5d101210 updateMask=status%2Cconfig
+[debug] [2023-01-30T22:50:59.387Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions/0e28ea5d5d101210 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}],"headers":[{"glob":"**/*.@(jpg|jpeg|gif|png)","headers":{"Access-Control-Allow-Origin":"*"}}]}}
+[debug] [2023-01-30T22:51:01.015Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions/0e28ea5d5d101210 200
+[debug] [2023-01-30T22:51:01.015Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions/0e28ea5d5d101210 {"name":"projects/474733194984/sites/bthesis-afda4/versions/0e28ea5d5d101210","status":"FINALIZED","config":{"headers":[{"headers":{"Access-Control-Allow-Origin":"*"},"glob":"**/*.@(jpg|jpeg|gif|png)"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-01-30T22:50:37.066548Z","createUser":{"email":"blindice1@gmail.com"},"finalizeTime":"2023-01-30T22:51:00.992257Z","finalizeUser":{"email":"blindice1@gmail.com"}}
+[debug] [2023-01-30T22:51:01.015Z] [hosting] finalized version for bthesis-afda4:[object Object]
+[info] +  hosting[bthesis-afda4]: version finalized 
+[info] i  hosting[bthesis-afda4]: releasing new version... 
+[debug] [2023-01-30T22:51:01.016Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/channels/live/releases versionName=projects%2F474733194984%2Fsites%2Fbthesis-afda4%2Fversions%2F0e28ea5d5d101210
+[debug] [2023-01-30T22:51:01.016Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/channels/live/releases {}
+[debug] [2023-01-30T22:51:02.505Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/channels/live/releases 200
+[debug] [2023-01-30T22:51:02.505Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/channels/live/releases {"name":"projects/474733194984/sites/bthesis-afda4/channels/live/releases/1675119061805993","version":{"name":"projects/474733194984/sites/bthesis-afda4/versions/0e28ea5d5d101210","status":"FINALIZED","config":{"headers":[{"headers":{"Access-Control-Allow-Origin":"*"},"glob":"**/*.@(jpg|jpeg|gif|png)"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-01-30T22:50:37.066548Z","createUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"},"finalizeTime":"2023-01-30T22:51:00.992257Z","finalizeUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"}},"type":"DEPLOY","releaseTime":"2023-01-30T22:51:01.805993995Z","releaseUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"}}
+[debug] [2023-01-30T22:51:02.505Z] [hosting] release: {"name":"projects/474733194984/sites/bthesis-afda4/channels/live/releases/1675119061805993","version":{"name":"projects/474733194984/sites/bthesis-afda4/versions/0e28ea5d5d101210","status":"FINALIZED","config":{"headers":[{"headers":{"Access-Control-Allow-Origin":"*"},"glob":"**/*.@(jpg|jpeg|gif|png)"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-01-30T22:50:37.066548Z","createUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"},"finalizeTime":"2023-01-30T22:51:00.992257Z","finalizeUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"}},"type":"DEPLOY","releaseTime":"2023-01-30T22:51:01.805993995Z","releaseUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"}}
+[info] +  hosting[bthesis-afda4]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/bthesis-afda4/overview
+[info] Hosting URL: https://bthesis-afda4.web.app
+[debug] [2023-01-30T22:51:33.573Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:253:49)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-01-30T22:52:40.893Z] ----------------------------------------------------------------------
+[debug] [2023-01-30T22:52:40.895Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-01-30T22:52:40.896Z] CLI Version:   11.17.0
+[debug] [2023-01-30T22:52:40.896Z] Platform:      win32
+[debug] [2023-01-30T22:52:40.896Z] Node Version:  v16.17.0
+[debug] [2023-01-30T22:52:40.897Z] Time:          Tue Jan 31 2023 06:52:40 GMT+0800 (Taipei Standard Time)
+[debug] [2023-01-30T22:52:40.898Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-30T22:52:40.959Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-30T22:52:40.960Z] > authorizing via signed-in user (blindice1@gmail.com)
+[debug] [2023-01-30T22:52:40.960Z] [iam] checking project bthesis-afda4 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-01-30T22:52:40.963Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bthesis-afda4:testIamPermissions [none]
+[debug] [2023-01-30T22:52:40.963Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bthesis-afda4:testIamPermissions x-goog-quota-user=projects/bthesis-afda4
+[debug] [2023-01-30T22:52:40.963Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bthesis-afda4:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-30T22:52:42.201Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bthesis-afda4:testIamPermissions 200
+[debug] [2023-01-30T22:52:42.201Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bthesis-afda4:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-30T22:52:42.202Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bthesis-afda4 [none]
+[debug] [2023-01-30T22:52:43.286Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bthesis-afda4 200
+[debug] [2023-01-30T22:52:43.287Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bthesis-afda4 {"projectId":"bthesis-afda4","projectNumber":"474733194984","displayName":"BThesis","name":"projects/bthesis-afda4","resources":{"hostingSite":"bthesis-afda4","storageBucket":"bthesis-afda4.appspot.com","locationId":"asia-southeast1"},"state":"ACTIVE","etag":"1_9cce8923-2fd9-4edc-96e2-be358478b4de"}
+[info] 
+[info] === Deploying to 'bthesis-afda4'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2023-01-30T22:52:43.293Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions [none]
+[debug] [2023-01-30T22:52:43.294Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-01-30T22:52:45.009Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions 200
+[debug] [2023-01-30T22:52:45.009Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions {"name":"projects/474733194984/sites/bthesis-afda4/versions/6023e7a7a0c83706","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[bthesis-afda4]: beginning deploy... 
+[info] i  hosting[bthesis-afda4]: found 65 files in build 
+[debug] [2023-01-30T22:53:04.482Z] [hosting] uploading with 200 concurrency
+[debug] [2023-01-30T22:53:05.381Z] [hosting] hash cache [YnVpbGQ] stored for 65 files
+[debug] [2023-01-30T22:53:05.381Z] [hosting][hash queue][FINAL] {"max":887,"min":4,"avg":37.276923076923076,"active":0,"complete":65,"success":65,"errored":0,"retried":0,"total":65,"elapsed":896}
+[debug] [2023-01-30T22:53:05.383Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/474733194984/sites/bthesis-afda4/versions/6023e7a7a0c83706:populateFiles [none]
+[debug] [2023-01-30T22:53:05.383Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/474733194984/sites/bthesis-afda4/versions/6023e7a7a0c83706:populateFiles {"files":{"/favicon.ico":"87aecafb41d21ea93b7af81398237b980c43ee880676c78630ee2d1e9a6d711f","/logo192.png":"ebf380e341383bbf65d6a762603f630a9f7610c97f32bd297bc097635bc37ee3","/logo512.png":"c55d034d9cf7abfac7600919cbf4f4ce2f3ea3478df91d01177e8ff136f58918","/manifest.json":"aff3449bdc238776f5d6d967f19ec491b36aed5fb7f23ccff6500736fd58494a","/robots.txt":"5fcd5c559ded0c02b3ed7840ca3ee77e95b798730af98d9f18bc627ac898071e","/images/cloud-logo.png":"6964ba7bea5ef56f3358405bded22aeaa50712d7b994ddaf9ac33bb25b752756","/images/csv.png":"1b4c1d8fb4fee9fde33ffe756cb5ee76ee4a7c10f6cf8383dcafd720e5562439","/images/doc.png":"8bbb0922e3d869b0bc3f5b3dda516474e1d35b9b4a0914cea221435253f41318","/images/file-icon.png":"6cc289114b3f41195d92044cafe84d9fb8399424bea8b76e41b7b70c430b705c","/images/html.png":"ed07b50deda40b6d4cf7a754ce61ec3a80b7b9c729ea4b3d15c50e932264570e","/images/pdf.png":"72182266c9095dfaf9d4af8a04756b094ef8a3e3110dfe5cd79c87e6a2df93e9","/images/PngItem_5131515.png":"c3438c45fb3675091fa1e81eac6ae1d3f8b622df6f119553bc811e597b996de3","/images/ppt.png":"bf5281c2a41700101050ee9fa7693bfbe32914e4d19f9725a1b1ad831e2bc42b","/images/txt.png":"9d6bbaf7824602a735b6afb117f73ff8264d258116e0c074861f48e21b6befb8","/images/upbox-icon.png":"669cac6409145a27e54df05b06200a76c0be2abab84b0d7ab02ff88e50697d4a","/images/upbox-logo.png":"ea5a95dcc0fc3db51f48c30defe6e9fdbbd3fab24a4e8e6d60abd306899a3c9a","/images/upbox_white.png":"d4f526beabb7231b6639e27b5a9618b41aaed7a44557a1534188d58180d406a9","/images/xls.png":"8ec6a20f91cb94a0ea1d87146f25423e5fb1cf095ee1b9d8f7bfbf1657404b6e","/asset-manifest.json":"b25c6a2d3ca4e2d4a765fea04ba926eb3c9842bfb9283f43ff4569bb15aa687f","/index.html":"9197c6203a7be698f10f64d796187da017e84eb464c5ca42fe32fae2aaa79f13","/static/js/787.670ba97f.chunk.js":"f88925a2a09aa6d09e7a606a06015b990ba51c2cabf3c69c93c4c4fadb67bb87","/static/css/main.f9331508.css":"503c0abec7075422206e9dbfcdf76470f29a04c955b5407cdc1f185ba42619c6","/static/js/787.670ba97f.chunk.js.map":"3c16cf668e0db9fc637541083845ad28d1492f3941d9a984beb802cd59459230","/static/js/main.c4fb80e6.js.LICENSE.txt":"951814c7e1125dd9cdcd402ae415760c2a08721e99319d56e11aa801f051cd59","/static/css/main.f9331508.css.map":"9ecf51546067730864872d2d9f0c0413e7dacc4c3b937838c7421a8df33ce703","/static/media/roboto-cyrillic-300-normal.1431d1cef06ad04f5458.woff2":"7a18c7738e3ee51c35457fab46849c9dd23ede38deeda4c8a1f0486b445026fe","/static/media/roboto-cyrillic-400-normal.71a33b6b50457b2c903a.woff2":"7b0fa1eec6852044a856e1c7ae33aa6e3db2916a05080be368fbe2fc2aaeb34e","/static/media/roboto-cyrillic-700-normal.d010f1f324e111a22e53.woff2":"65c6fa99ec79366b59543a4127be443c670c9042e5937082e6dbda34c0fcad19","/static/media/roboto-cyrillic-500-normal.cad7d3d9cb265e334e58.woff2":"ef87b441158ea715ef732cb7ef9e181ef3cc576dad81250e7eda0111c32e1c3d","/static/media/roboto-cyrillic-ext-300-normal.4777461b144e55145268.woff2":"31baa9e9c45f2de6aae0e8b3a750afb432fad261c982d0f27c103c4ca30ffe38","/static/media/roboto-cyrillic-ext-400-normal.804378952da8a10faae2.woff2":"d370340df84be45fad28859559e5bd3531cbf6c3873ca6bba200aabda9f44cb6","/static/media/roboto-greek-300-normal.db2632771401f61463fe.woff2":"3998a7853436ec165d6d021632bbf756d7f109d3e5dd14a56cc57ccadb39f455","/static/media/roboto-cyrillic-ext-700-normal.be4d02458ce53887dc37.woff2":"22fcde50e80e27fcb70358106ae20e70d55a6976436a29f7e81d91f8dddead91","/static/media/roboto-cyrillic-ext-500-normal.62ced72e5832f02c2796.woff2":"990c22e932984780d4c2a52fac7ff537f0b4fb4e4ff3a6931b986ad65e94963d","/static/media/roboto-greek-400-normal.c35e4c3958e209d17b31.woff2":"a9fa660ff3ebb4698597476d9ca5a6a24340b3e4e0cf9e6704510912d25d2647","/static/media/roboto-greek-500-normal.9ac81fefbe6c319ea40b.woff2":"a6822425ab5737bbaa54ab2e57305b223d6eaec89e7fa09d5549cb5c127f1485","/static/media/roboto-greek-700-normal.50e795c1345353b0e996.woff2":"5309d7e9b9fc472459aa9fd4e7a489791efa847ea0e0b8a28c7fedf708226468","/static/media/roboto-greek-ext-300-normal.35b9d6be04b95f0f0530.woff2":"795dddfc80123d4b2d4b1e9b11ad7a07076bcffdede8d539a6784335423f0478","/static/media/roboto-greek-ext-400-normal.169619821ea93019d1bb.woff2":"ba8d976054fcda8593f3d66c47505c9304e5a2f34471937fc99dbc792b4c41e7","/static/media/roboto-greek-ext-500-normal.6fb9cffb1d3e72bf9293.woff2":"c15cfee67d025043a6f6d0350eac166074d471f84a20b05c2cfa24c38a850b0e","/static/media/roboto-greek-ext-700-normal.bd9854c751441ccc1a70.woff2":"8e5c05f0bebeb2b1f9ac9a4f0a727349991474e29c3214587a402b07b8ba6817","/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2":"c5c35e4f7eb9ad6aa543faad4550e57362bfd7ad88f9df6f3f7f4fb1ea808cd3","/static/media/roboto-latin-300-normal.c48fb6765a9fcb00b330.woff2":"1257a1f7d6d4cf0017f914b20a89377caf5c0ff9d31a005eadcc18181db9be3d","/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2":"a779f5f1144e9c9efeda4a4141d7a4050e386ab4259aeadea4dff48f67c23362","/static/media/roboto-latin-ext-300-normal.dc7dcec8e3f654e0ed63.woff2":"548ef6ca84f2e65e5cd04157702596604430cbdd3d5257d51e88d106e5480656","/static/media/roboto-latin-ext-400-normal.861b791f9de857a6e7bc.woff2":"6fe807b7e1c944c0c220cccf918c7ef7d79437e1266ca8986026cdbcbd04fabe","/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2":"f2cc892b949b456ba07184673306af281b0fe37998ceb8c7adfa074a8905c9c4","/static/media/roboto-latin-ext-500-normal.9165081d10e1ba601384.woff2":"16aa9f4b2ad3221f370aec4a42745d0575922ed73f5137e6b3720e3fb7abdfd2","/static/media/roboto-latin-ext-700-normal.ed67ad54b1a8f5d21150.woff2":"af012fee08087d597c634fe45ae3090a18c6fb72bff64656fe2b51243e008d58","/static/media/roboto-vietnamese-300-normal.32fc45a3d1e8ea11fabc.woff2":"b89075183f5b199e65e18d02a0d686671009d76aea2d9c14e97785a145f987b3","/static/media/roboto-vietnamese-400-normal.3230f9b040f3c630e0c3.woff2":"054d6875432132790a834b4e81b5180ab51d42f60360d36398b8657fa466726c","/static/media/roboto-vietnamese-500-normal.d8642a3d1d4ef6179644.woff2":"8a243fed3a3523b36b5f225bf9da52785422d645dcd4f5c812fd26b105d3a0ee","/static/media/roboto-vietnamese-700-normal.3425a701027d0699e369.woff2":"a1a95a8406c3d1b18a0cd24ff3fd7369f79bea51ace99d462d5daccc9465af00","/images/lanz.jpg":"f92eb3a5985db809419fae626ee0e03f8ab0af8d0277ead9f05cd41d87f258c9","/upbox-icon.png":"669cac6409145a27e54df05b06200a76c0be2abab84b0d7ab02ff88e50697d4a","/static/media/roboto-all-300-normal.168d6383e73339293ac3.woff":"cad261f11c78ce1fafa57fc9d935f030e1bc3209fa6e7dc488db5f7e5e12e314","/images/inigo.jpg":"5e023adf16e6bfc1aea05fe8c29315de8d6c46138e9f93b1312a332a78d7b3cc","/static/media/roboto-all-400-normal.c5d001fa922fa66a147f.woff":"a6b077da001d36889c5a88d7349d2014a7bbad639249359fd76d29de49b18cc8","/static/media/roboto-all-500-normal.0ab669b7a0d19b178f57.woff":"7bda2221f5ec69b4bb96ae92ec7fc5456cc4c92a2804cd94720add5f7b42d84f","/static/media/roboto-all-700-normal.a457fde362a540fcadff.woff":"cff0c9f57b3c8a7fd9d91c1faf05f1ae53ccc15098828d670148103c942ce889","/images/kyer.jpg":"411ce9af9b65ce0a4fb4fae26a3b5fca4e2b2f36b3d03d6ec4991706861578b2","/images/lawrenz.jpg":"ba7aded3724907aa0505a4d8e87274f709e29fbbe5695da77b4163850428ce88","/static/media/PngItem_5131515.8df16d12a47f2c1aba79.png":"c3438c45fb3675091fa1e81eac6ae1d3f8b622df6f119553bc811e597b996de3","/static/js/main.c4fb80e6.js":"5b7cf2a361c399acf3caa5c82dee54637e4ea692f34db903c237ff655311329b","/static/js/main.c4fb80e6.js.map":"5a87c41ede9a8756a37aff4da5ecb18c7e8a97c44ed5367352dd9587dd60a641"}}
+[debug] [2023-01-30T22:53:06.778Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/474733194984/sites/bthesis-afda4/versions/6023e7a7a0c83706:populateFiles 200
+[debug] [2023-01-30T22:53:06.778Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/474733194984/sites/bthesis-afda4/versions/6023e7a7a0c83706:populateFiles {"uploadRequiredHashes":["5a87c41ede9a8756a37aff4da5ecb18c7e8a97c44ed5367352dd9587dd60a641","9197c6203a7be698f10f64d796187da017e84eb464c5ca42fe32fae2aaa79f13","5b7cf2a361c399acf3caa5c82dee54637e4ea692f34db903c237ff655311329b","9ecf51546067730864872d2d9f0c0413e7dacc4c3b937838c7421a8df33ce703","b25c6a2d3ca4e2d4a765fea04ba926eb3c9842bfb9283f43ff4569bb15aa687f"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files"}
+[debug] [2023-01-30T22:53:06.779Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/5a87c41ede9a8756a37aff4da5ecb18c7e8a97c44ed5367352dd9587dd60a641 [none]
+[debug] [2023-01-30T22:53:06.779Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/5a87c41ede9a8756a37aff4da5ecb18c7e8a97c44ed5367352dd9587dd60a641 [stream]
+[debug] [2023-01-30T22:53:06.781Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/9197c6203a7be698f10f64d796187da017e84eb464c5ca42fe32fae2aaa79f13 [none]
+[debug] [2023-01-30T22:53:06.781Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/9197c6203a7be698f10f64d796187da017e84eb464c5ca42fe32fae2aaa79f13 [stream]
+[debug] [2023-01-30T22:53:06.781Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/5b7cf2a361c399acf3caa5c82dee54637e4ea692f34db903c237ff655311329b [none]
+[debug] [2023-01-30T22:53:06.781Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/5b7cf2a361c399acf3caa5c82dee54637e4ea692f34db903c237ff655311329b [stream]
+[debug] [2023-01-30T22:53:06.782Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/9ecf51546067730864872d2d9f0c0413e7dacc4c3b937838c7421a8df33ce703 [none]
+[debug] [2023-01-30T22:53:06.782Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/9ecf51546067730864872d2d9f0c0413e7dacc4c3b937838c7421a8df33ce703 [stream]
+[debug] [2023-01-30T22:53:06.783Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/b25c6a2d3ca4e2d4a765fea04ba926eb3c9842bfb9283f43ff4569bb15aa687f [none]
+[debug] [2023-01-30T22:53:06.783Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/b25c6a2d3ca4e2d4a765fea04ba926eb3c9842bfb9283f43ff4569bb15aa687f [stream]
+[debug] [2023-01-30T22:53:06.784Z] [hosting][populate queue][FINAL] {"max":1401,"min":1401,"avg":1401,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1406}
+[debug] [2023-01-30T22:53:06.784Z] [hosting] uploads queued: 5
+[debug] [2023-01-30T22:53:09.083Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/9197c6203a7be698f10f64d796187da017e84eb464c5ca42fe32fae2aaa79f13 200
+[debug] [2023-01-30T22:53:09.083Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/9197c6203a7be698f10f64d796187da017e84eb464c5ca42fe32fae2aaa79f13 [stream]
+[debug] [2023-01-30T22:53:09.201Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/9ecf51546067730864872d2d9f0c0413e7dacc4c3b937838c7421a8df33ce703 200
+[debug] [2023-01-30T22:53:09.201Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/9ecf51546067730864872d2d9f0c0413e7dacc4c3b937838c7421a8df33ce703 [stream]
+[debug] [2023-01-30T22:53:09.606Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/b25c6a2d3ca4e2d4a765fea04ba926eb3c9842bfb9283f43ff4569bb15aa687f 200
+[debug] [2023-01-30T22:53:09.606Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/b25c6a2d3ca4e2d4a765fea04ba926eb3c9842bfb9283f43ff4569bb15aa687f [stream]
+[debug] [2023-01-30T22:53:09.896Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/5b7cf2a361c399acf3caa5c82dee54637e4ea692f34db903c237ff655311329b 200
+[debug] [2023-01-30T22:53:09.896Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/5b7cf2a361c399acf3caa5c82dee54637e4ea692f34db903c237ff655311329b [stream]
+[debug] [2023-01-30T22:53:11.495Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/5a87c41ede9a8756a37aff4da5ecb18c7e8a97c44ed5367352dd9587dd60a641 200
+[debug] [2023-01-30T22:53:11.496Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/bthesis-afda4/versions/6023e7a7a0c83706/files/5a87c41ede9a8756a37aff4da5ecb18c7e8a97c44ed5367352dd9587dd60a641 [stream]
+[debug] [2023-01-30T22:53:11.496Z] [hosting][upload queue][FINAL] {"max":4718,"min":2304,"avg":3077.8,"active":0,"complete":5,"success":5,"errored":0,"retried":0,"total":5,"elapsed":4718}
+[info] +  hosting[bthesis-afda4]: file upload complete 
+[debug] [2023-01-30T22:53:11.497Z] [hosting] deploy completed after 7039ms
+[debug] [2023-01-30T22:53:11.501Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**/*.@(jpg|jpeg|gif|png)",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        }
+      ],
+      "site": "bthesis-afda4"
+    },
+    "version": "projects/474733194984/sites/bthesis-afda4/versions/6023e7a7a0c83706"
+  }
+]
+[info] i  hosting[bthesis-afda4]: finalizing version... 
+[debug] [2023-01-30T22:53:11.503Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions/6023e7a7a0c83706 updateMask=status%2Cconfig
+[debug] [2023-01-30T22:53:11.503Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions/6023e7a7a0c83706 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}],"headers":[{"glob":"**/*.@(jpg|jpeg|gif|png)","headers":{"Access-Control-Allow-Origin":"*"}}]}}
+[debug] [2023-01-30T22:53:13.022Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions/6023e7a7a0c83706 200
+[debug] [2023-01-30T22:53:13.023Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/versions/6023e7a7a0c83706 {"name":"projects/474733194984/sites/bthesis-afda4/versions/6023e7a7a0c83706","status":"FINALIZED","config":{"headers":[{"headers":{"Access-Control-Allow-Origin":"*"},"glob":"**/*.@(jpg|jpeg|gif|png)"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-01-30T22:52:44.530189Z","createUser":{"email":"blindice1@gmail.com"},"finalizeTime":"2023-01-30T22:53:12.995726Z","finalizeUser":{"email":"blindice1@gmail.com"}}
+[debug] [2023-01-30T22:53:13.023Z] [hosting] finalized version for bthesis-afda4:[object Object]
+[info] +  hosting[bthesis-afda4]: version finalized 
+[info] i  hosting[bthesis-afda4]: releasing new version... 
+[debug] [2023-01-30T22:53:13.024Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/channels/live/releases versionName=projects%2F474733194984%2Fsites%2Fbthesis-afda4%2Fversions%2F6023e7a7a0c83706
+[debug] [2023-01-30T22:53:13.024Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/channels/live/releases {}
+[debug] [2023-01-30T22:53:14.480Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/channels/live/releases 200
+[debug] [2023-01-30T22:53:14.481Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/bthesis-afda4/channels/live/releases {"name":"projects/474733194984/sites/bthesis-afda4/channels/live/releases/1675119193795515","version":{"name":"projects/474733194984/sites/bthesis-afda4/versions/6023e7a7a0c83706","status":"FINALIZED","config":{"headers":[{"headers":{"Access-Control-Allow-Origin":"*"},"glob":"**/*.@(jpg|jpeg|gif|png)"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-01-30T22:52:44.530189Z","createUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"},"finalizeTime":"2023-01-30T22:53:12.995726Z","finalizeUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"}},"type":"DEPLOY","releaseTime":"2023-01-30T22:53:13.795515835Z","releaseUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"}}
+[debug] [2023-01-30T22:53:14.481Z] [hosting] release: {"name":"projects/474733194984/sites/bthesis-afda4/channels/live/releases/1675119193795515","version":{"name":"projects/474733194984/sites/bthesis-afda4/versions/6023e7a7a0c83706","status":"FINALIZED","config":{"headers":[{"headers":{"Access-Control-Allow-Origin":"*"},"glob":"**/*.@(jpg|jpeg|gif|png)"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-01-30T22:52:44.530189Z","createUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"},"finalizeTime":"2023-01-30T22:53:12.995726Z","finalizeUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"}},"type":"DEPLOY","releaseTime":"2023-01-30T22:53:13.795515835Z","releaseUser":{"email":"blindice1@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7xHaZ_y6WLW8ndol5AVlIB_j1Vph5YYo5TmCW6=mo"}}
+[info] +  hosting[bthesis-afda4]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/bthesis-afda4/overview
+[info] Hosting URL: https://bthesis-afda4.web.app
+[debug] [2023-01-30T22:53:45.566Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\b010986\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:253:49)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)
+[error] 
+[error] Error: An unexpected error has occurred.
