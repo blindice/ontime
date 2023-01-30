@@ -5,9 +5,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import Menu from '@mui/material/Menu'
 import IconButton from '@mui/material/IconButton'
 import AccountCircle from '@mui/icons-material/AccountCircle'
+import { toast } from 'react-toastify'
 
 import useEmail from '../../../hooks/useEmail'
 import { logoutAsync } from '../accountSlice'
+import { audit } from '../../../helper/worker'
+import Toast from '../../../components/Toast'
 
 export default function Logout() {
   const dispatch = useDispatch()
@@ -23,7 +26,23 @@ export default function Logout() {
     setAnchorEl(null)
   }
 
-  const handleLogout = async () => await dispatch(logoutAsync()).unwrap()
+  const handleLogout = async () => {
+    try {
+      await audit({
+        user: email,
+        activity: 'Logout',
+        date: Date.now(),
+        description: 'Logout',
+        priority: 'High',
+        status: 'Success',
+      })
+      await dispatch(logoutAsync()).unwrap()
+      console.log('logout')
+    } catch (err) {
+      console.log(err)
+      toast(err, { type: 'error' })
+    }
+  }
   return (
     <div style={{ float: 'right' }}>
       <Typography
@@ -60,6 +79,7 @@ export default function Logout() {
       >
         <MenuItem onClick={handleLogout}>Sign-out</MenuItem>
       </Menu>
+      <Toast />
     </div>
   )
 }
