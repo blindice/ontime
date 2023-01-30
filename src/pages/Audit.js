@@ -68,7 +68,7 @@ export default function Audit() {
       field: "description",
       headerName: "Description",
       flex: 1,
-      minWidth: 500,
+      minWidth: 800,
       headerClassName: "super-app-theme--header",
     },
     {
@@ -82,14 +82,14 @@ export default function Audit() {
       field: "priority",
       headerName: "Priority",
       flex: 1,
-      minWidth: 75,
+      minWidth: 100,
       headerClassName: "super-app-theme--header",
     },
     {
       field: "status",
       headerName: "Status",
       flex: 1,
-      minWidth: 75,
+      minWidth: 100,
       headerClassName: "super-app-theme--header",
     },
   ];
@@ -104,13 +104,13 @@ export default function Audit() {
             color: "#1565c0",
           }}
         >
-          Audit Trace
+          Activity Log
         </p>
       </div>
       <div
         style={{
           height: "66.8vh",
-          width: "70vw",
+          width: "80vw",
           marginTop: "3%",
         }}
       >

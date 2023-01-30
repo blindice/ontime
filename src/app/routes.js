@@ -56,7 +56,7 @@ export default function Routes() {
           element: <Trash />,
         },
         {
-          path: "/audit",
+          path: "//activitylog",
           element: <Audit />,
         },
       ],

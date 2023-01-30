@@ -117,11 +117,11 @@ export default function SideBar() {
           </Box>
           <Box display={!isAdmin && { sm: "none" }}>
             <MenuItem
-              routerLink={<Link to="/audit" />}
+              routerLink={<Link to="/activitylog" />}
               prefix={<BrightnessAutoRoundedIcon />}
             >
               {" "}
-              AUDIT TRACE
+              ACTIVITY LOG
             </MenuItem>
           </Box>
         </Menu>
